@@ -1,0 +1,30 @@
+TODO :
+  - check if chrome, install if not
+  - check if sublime, install if not
+  - check if iTerm2, install if not
+  - auto sign in chrome
+  - auto download sublime plugins and config
+  - download powerline font
+  - install powerline font
+  - check if git, install if not
+
+
+
+INSTALL POWERLINE FONT
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>containerURLs</key>
+	<array>
+		<string>file:///nfs/zfs-student-2/users/jwestpha/Downloads/Meslo%20LG%20M%20DZ%20Regular%20for%20Powerline.otf</string>
+	</array>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Powerline</string>
+	<key>reference</key>
+	<integer>2</integer>
+</dict>
+</plist>

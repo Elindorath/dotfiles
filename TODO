@@ -8,6 +8,10 @@ TODO :
   - install powerline font
   - check if git, install if not
   - download and install solarized
+  - Configure iTerm2
+  - check if brew, install if not
+  - brew update
+  - brew install vim
 
 
 
@@ -29,3 +33,18 @@ INSTALL POWERLINE FONT
 	<integer>2</integer>
 </dict>
 </plist>
+
+
+
+CONFIGURE iTerm2
+
+(( defaults read com.googlecode.iterm2 > somefile.whatever ))
+Profiles
+  Text
+    Regular Font
+    	12pt Meslo LG M DZ Regular for Powerline
+    Non-ASCII Font
+    	11pt Meslo LG M DZ Regular for Powerline
+  Colors
+    Solarized Dark
+    Contrast 10

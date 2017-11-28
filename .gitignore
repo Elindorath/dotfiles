@@ -1,1 +1,13 @@
+# generic temporary files
+.tmp
+
+# vim temporary files
+.swp
+
+# unwanted system files
+.DS_Store
+_DS_Store
+Thumbs.db
 *.sublime*
+.vscode
+

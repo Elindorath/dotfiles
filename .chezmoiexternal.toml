@@ -1,0 +1,104 @@
+[".oh-my-zsh"]
+  type = "archive"
+  url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
+  type = "archive"
+  url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+  type = "archive"
+  url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-autopair"]
+  type = "archive"
+  url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-completions"]
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/clipboard"]
+  type = "archive"
+  url = "https://github.com/zpm-zsh/clipboard/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-bitwarden"]
+  type = "archive"
+  url = "https://github.com/Game4Move78/zsh-bitwarden/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/solarized-man/solarized-man.plugin.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/zlsun/solarized-man/master/solarized-man.plugin.zsh"
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-asdf-direnv/zsh-asdf-direnv.plugin.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/redxtech/zsh-asdf-direnv/master/zsh-asdf-direnv.plugin.zsh"
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/mtxr/zsh-change-case/master/change-case.zsh"
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/passwordless-history/passwordless-history.plugin.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/jgogstad/passwordless-history/master/passwordless-history.plugin.zsh"
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/you-should-use/you-should-use.plugin.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/master/you-should-use.plugin.zsh"
+  refreshPeriod = "168h"
+
+# ----- WSL specific ----- #
+{{- if (.wsl) }}
+["{{ .xdg_bin_home }}/wsl-open.sh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+  refreshPeriod = "168h"
+{{- end }}
+# ----- WSL specific ----- #
+
+# ----- Fonts for shell ----- #
+{{- $fontDir := "" }}
+{{- if (.wsl) }}
+{{-   $fontDir = print .win_home "/AppData/Local/Microsoft/Windows/Fonts" | trim }}
+{{- else if (eq .chezmoi.os "darwin") }}
+{{-   $fontDir = "Library/Fonts" }}
+{{- else if (eq .chezmoi.os "linux") }}
+{{-   $fontDir = ".local/share/fonts" }}
+{{- end }}
+["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
+    type = "file"
+    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
+    refreshPeriod = "168h"
+["{{ $fontDir }}/MesloLGS NF Bold.ttf"]
+    type = "file"
+    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
+    refreshPeriod = "168h"
+["{{ $fontDir }}/MesloLGS NF Italic.ttf"]
+    type = "file"
+    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
+    refreshPeriod = "168h"
+["{{ $fontDir }}/MesloLGS NF Bold Italic.ttf"]
+    type = "file"
+    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
+    refreshPeriod = "168h"
+# ----- Fonts for shell ----- #

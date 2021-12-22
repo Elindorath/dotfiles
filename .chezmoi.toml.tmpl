@@ -1,0 +1,14 @@
+{{- $wsl := false -}}
+{{- $win_user_profile := "" -}}
+{{- $win_home := "" -}}
+
+{{- if (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
+{{-   $wsl = true -}}
+{{-   $win_user_profile = output "wslvar" "USERPROFILE" | trim -}}
+{{-   $win_home = output "wslpath" $win_user_profile  | trim -}}
+{{- end -}}
+
+[data]
+  wsl = {{ $wsl }}
+  win_home = {{ $win_home | quote }}
+  xdg_bin_home = "{{ .chezmoi.homeDir }}/.local/bin"

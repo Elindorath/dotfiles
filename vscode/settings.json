@@ -1,0 +1,90 @@
+{
+  "window.closeWhenEmpty": true,
+  "editor.dragAndDrop": false,
+  "files.insertFinalNewline": true,
+  "editor.find.seedSearchStringFromSelection": true,
+  "editor.scrollBeyondLastLine": true,
+  "window.title": "${appName}",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnPaste": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.renderLineHighlight": "all",
+  "editor.cursorBlinking": "smooth",
+  "editor.minimap.showSlider": "always",
+  "files.defaultLanguage": "javascript",
+  "files.trimFinalNewlines": true,
+  "files.eol": "\n",
+  "workbench.commandPalette.preserveInput": true,
+  "workbench.startupEditor": "none",
+  "workbench.fontAliasing": "auto",
+  "workbench.statusBar.feedback.visible": false,
+  "breadcrumbs.enabled": true,
+  "search.smartCase": true,
+  "extensions.closeExtensionDetailsOnViewChange": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.shell.windows": "C\\Windows\\System32\\wsl.exe",
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "git.enableCommitSigning": true,
+  "git.showPushSuccessNotification": true,
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.iconTheme": "material-icon-theme",
+  "git.autofetch": true,
+  "terraform.indexing": {
+    "enabled": false,
+    "liveIndexing": true,
+    "delay": 500,
+    "exclude": [
+      ".terraform/**/*",
+      "**/.terraform/**/*"
+    ]
+  },
+  "terraform.languageServer": {
+    "external": true,
+    "args": [
+      "serve"
+    ]
+  },
+  "files.associations": {
+    "*.json": "json"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "polacode.backgroundColor": "#ffffff",
+  "polacode.transparentBackground": true,
+  "polacode.shadow": "rgba(0, 0, 0, 0.55) 0px 20px 34px",
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "synthwave84.brightness": 0.65,
+  "synthwave84.disableGlow": true,
+  "yaml.customTags": [
+    "!encrypted/pkcs1-oaep scalar",
+    "!vault scalar"
+  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "hadolint.hadolintPath": "/usr/local/bin/hadolint",
+  "redhat.telemetry.enabled": true,
+  "shellcheck.customArgs": [
+    "-x"
+  ],
+  "polacode.target": "snippet",
+  "go-template.languages": [
+    "toml"
+  ],
+  "[python]": {
+    "editor.tabSize": 4
+  }
+}

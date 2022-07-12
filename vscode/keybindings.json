@@ -1,0 +1,33 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+  {
+    "key": "cmd+v",
+    "command": "pasteAndIndent.action",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": "cmd+shift+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+k cmd+'",
+    "command": "extension.selectSingleQuote",
+    "when": "editorFocus"
+  },
+  {
+    "key": "cmd+k '",
+    "command": "-extension.selectSingleQuote",
+    "when": "editorFocus"
+  }
+]

@@ -1,0 +1,24 @@
+[user]
+	email = elindorath@gmail.com
+	name = Joachim Westphal
+	signingkey = 8E8B828A
+[push]
+	default = simple
+[core]
+	editor = code --wait
+	excludesfile = {{ .chezmoi.homeDir }}.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[diff]
+	tool = default-difftool
+[difftool "default-difftool"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[gpg]
+	program = /usr/local/bin/gpg
+[pull]
+	rebase = true

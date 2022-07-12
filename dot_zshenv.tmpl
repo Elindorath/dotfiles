@@ -1,0 +1,59 @@
+#! /usr/bin/env zsh
+# shellcheck shell=bash
+
+# This is the order of configuration files loading
+# System wide files (located in /etc/zsh/) are loaded just before each corresponding local files
+# See:
+#   - https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell/46856#46856
+#   - https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html
+#
+# |-----------|-------------------------------|-------------------------------|
+# |   files   |             login             |           non-login           |
+# |-----------|-------------|-----------------|-------------|-----------------|
+# |           | interactive | non-interactive | interactive | non-interactive |
+# |-----------|-------------|-----------------|-------------|-----------------|
+# | .zshenv   |      X      |        X        |      X      |        X        |
+# | .zprofile |      X      |        X        |      -      |        -        |
+# | .zshrc    |      X      |        -        |      X      |        -        |
+# | .zlogin   |      X      |        X        |      -      |        -        |
+# | .zlogout  |      X      |        X        |      -      |        -        |
+# |-----------|-------------|-----------------|-------------|-----------------|
+
+# ZDOTDIR is an internal zsh variable that specify the location of zsh configuration files
+# shellcheck disable=SC2034
+# ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell/zsh"
+
+export LC_ALL="en_US.UTF-8"
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR="vim"
+else
+  export EDITOR="code --wait"
+fi
+
+export VISUAL="code --wait"
+
+# Use sane default for XDG directories
+# See: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# XDG_RUNTIME_DIR should be handled by the system
+# In WSL, XDG_RUNTIME_DIR="/mnt/wslg/runtime-dir"
+# Might be moved to /etc/security/pam_env.conf according to https://superuser.com/questions/365847/where-should-the-xdg-config-home-variable-be-defined
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# Brew
+export HOMEBREW_GITHUB_API_TOKEN={{ (bitwardenFields "item" "Homebrew").HOMEBREW_GITHUB_API_TOKEN.value }}
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
+export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
+export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+export HOMEBREW_SHELLENV_PREFIX="/home/linuxbrew/.linuxbrew";
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}";
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+
+typeset -U path

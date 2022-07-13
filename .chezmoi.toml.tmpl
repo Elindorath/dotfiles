@@ -1,6 +1,7 @@
 {{- $wsl := false -}}
 {{- $win_user_profile := "" -}}
 {{- $win_home := "" -}}
+{{- $homebrew_prefix := "" -}}
 
 {{- if (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
 {{-   $wsl = true -}}
@@ -8,7 +9,18 @@
 {{-   $win_home = output "wslpath" $win_user_profile  | trim -}}
 {{- end -}}
 
+{{- if (eq .chezmoi.os "linux") -}}
+{{-   $homebrew_prefix = "/home/linuxbrew/.linuxbrew" -}}
+{{- else if (eq .chezmoi.os "darwin") -}}
+{{-   if (eq .chezmoi.arch "arm64") -}}
+{{-     $homebrew_prefix = "/opt/homebrew" -}}
+{{-   else -}}
+{{-     $homebrew_prefix = "/usr/local" -}}
+{{-   end -}}
+{{- end -}}
+
 [data]
   wsl = {{ $wsl }}
   win_home = {{ $win_home | quote }}
   xdg_bin_home = "{{ .chezmoi.homeDir }}/.local/bin"
+  homebrew_prefix = "{{ $homebrew_prefix }}"

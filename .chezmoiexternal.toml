@@ -68,9 +68,12 @@
   url = "https://raw.githubusercontent.com/mtxr/zsh-change-case/master/change-case.zsh"
   refreshPeriod = "168h"
 {{- if (eq .chezmoi.os "darwin") }}
+# Special commands like imgcat are not included
+# See: https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh
 [".config/iterm2/iterm2_shell_integration.zsh"]
   type = "file"
   url = "https://iterm2.com/shell_integration/zsh"
+  executable = true
   refreshPeriod = "168h"
 {{- end }}
 

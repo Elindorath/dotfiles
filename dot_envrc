@@ -1,1 +1,4 @@
 use asdf
+{{- if (gt (len (env "BW_SESSION")) 0) }}
+export BW_SESSION="{{- env "BW_SESSION" -}}"
+{{- end }}

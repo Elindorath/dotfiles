@@ -60,7 +60,7 @@ plugins=(
   # Not in oh-my-zsh: https://github.com/MichaelAquilina/zsh-you-should-use
   you-should-use
   # Not in oh-my-zsh: https://github.com/redxtech/zsh-asdf-direnv
-  zsh-asdf-direnv
+  # zsh-asdf-direnv
   # Not in oh-my-zsh: https://github.com/hlissner/zsh-autopair
   zsh-autopair
   # Not in oh-my-zsh: https://github.com/zsh-users/zsh-autosuggestions
@@ -133,6 +133,8 @@ ZSH_COLORIZE_TOOL=chroma
 # ----- Custom plugins ----- #
 # shellcheck source=/home/elindorath/.oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh
 source "$HOME/.oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh"
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 # ----- Custom plugins ----- #
 
 

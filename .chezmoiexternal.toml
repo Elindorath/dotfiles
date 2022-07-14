@@ -35,10 +35,10 @@
   type = "file"
   url = "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/master/you-should-use.plugin.zsh"
   refreshPeriod = "168h"
-[".oh-my-zsh/custom/plugins/zsh-asdf-direnv/zsh-asdf-direnv.plugin.zsh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/redxtech/zsh-asdf-direnv/master/zsh-asdf-direnv.plugin.zsh"
-  refreshPeriod = "168h"
+# [".oh-my-zsh/custom/plugins/zsh-asdf-direnv/zsh-asdf-direnv.plugin.zsh"]
+#   type = "file"
+#   url = "https://raw.githubusercontent.com/redxtech/zsh-asdf-direnv/master/zsh-asdf-direnv.plugin.zsh"
+#   refreshPeriod = "168h"
 [".oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
   url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"

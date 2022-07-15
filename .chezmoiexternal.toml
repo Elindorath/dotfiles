@@ -8,7 +8,8 @@
 [".oh-my-zsh/custom/themes/powerlevel10k"]
   type = "archive"
   url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
-  exact = true
+  # Allow changes for *.zsh.zwc
+  exact = false
   stripComponents = 1
   refreshPeriod = "168h"
 [".oh-my-zsh/custom/plugins/clipboard"]

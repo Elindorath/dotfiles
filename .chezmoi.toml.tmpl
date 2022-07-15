@@ -24,3 +24,10 @@
   win_home = {{ $win_home | quote }}
   xdg_bin_home = "{{ .chezmoi.homeDir }}/.local/bin"
   homebrew_prefix = "{{ $homebrew_prefix }}"
+
+{{- if (eq .chezmoi.os "darwin") -}}
+[[textconv]]
+pattern = "**/*.plist"
+command = "plutil"
+args = ["-convert", "xml1", "-o", "-", "-"]
+{{- end -}}

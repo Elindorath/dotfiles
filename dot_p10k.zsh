@@ -50,7 +50,7 @@
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
-    direnv                  # direnv status (https://direnv.net/)
+    # direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
@@ -601,7 +601,8 @@
   #
   # Note: If this parameter is set to (shell local global), it won't hide tools.
   # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SOURCES.
-  typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local global)
+  # typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local)
 
   # If set to false, hide tool versions that are the same as global.
   #

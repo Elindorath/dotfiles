@@ -49,6 +49,7 @@ plugins=(
   postgres
   # Might be of interest
   # rsync
+  rbw
   # Not in oh-my-zsh: https://github.com/zlsun/solarized-man
   solarized-man
   # Might be of interest
@@ -136,10 +137,12 @@ ZSH_COLORIZE_TOOL=chroma
 
 
 # ----- Custom plugins ----- #
+
 # shellcheck source=/home/elindorath/.oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh
 source "$HOME/.oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh"
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
 # ----- Custom plugins ----- #
 
 
@@ -183,13 +186,24 @@ setopt INTERACTIVE_COMMENTS
 
 # ----- Native zsh settings ----- #
 
-{{- if (eq .chezmoi.os "darwin") }}
+
+
+# ----- Custom ----- #
+
+{{ if (eq .chezmoi.os "darwin") -}}
 test -e "${HOME}/.config/iterm2/iterm2_shell_integration.zsh" && source "${HOME}/.config/iterm2/iterm2_shell_integration.zsh"
 alias imgcat="${HOME}/.config/iterm2/imgcat"
 alias imgls="${HOME}/.config/iterm2/imgls"
 {{- end }}
 
+export PATH="${XDG_CONFIG_HOME}/git${PATH+:$PATH}";
+
+# ----- Custom ----- #
+
+
+
 # ----- Aliases ----- #
+
 # See useful aliases at:
 # - https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 # - https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/cp/cp.plugin.zsh
@@ -217,7 +231,11 @@ from() { ls -la "$(which "$1")"; }
 
 alias -g G="| grep"
 
+typeset -U path
+
 # ----- Aliases ----- #
+
+
 
 # ----- Prompt ----- #
 

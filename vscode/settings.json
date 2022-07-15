@@ -51,7 +51,8 @@
     ]
   },
   "files.associations": {
-    "*.json": "json"
+    "*.json": "json",
+    "*.tmpl": "go-template"
   },
   "explorer.confirmDragAndDrop": false,
   "polacode.backgroundColor": "#ffffff",

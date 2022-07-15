@@ -116,6 +116,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # See: https://github.com/zsh-users/zsh-completions/issues/603
 fpath+="${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src"
 
+fpath+="$(brew --prefix)/share/zsh/site-functions"
+
 # shellcheck source=/home/elindorath/.oh-my-zsh/oh-my-zsh.sh
 source "$ZSH/oh-my-zsh.sh"
 

@@ -185,6 +185,8 @@ setopt INTERACTIVE_COMMENTS
 
 {{- if (eq .chezmoi.os "darwin") }}
 test -e "${HOME}/.config/iterm2/iterm2_shell_integration.zsh" && source "${HOME}/.config/iterm2/iterm2_shell_integration.zsh"
+alias imgcat="${HOME}/.config/iterm2/imgcat"
+alias imgls="${HOME}/.config/iterm2/imgls"
 {{- end }}
 
 # ----- Aliases ----- #

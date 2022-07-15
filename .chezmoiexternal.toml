@@ -76,6 +76,16 @@
   url = "https://iterm2.com/shell_integration/zsh"
   executable = true
   refreshPeriod = "168h"
+[".config/iterm2/imgcat"]
+  type = "file"
+  url = "https://iterm2.com/utilities/imgcat"
+  executable = true
+  refreshPeriod = "168h"
+[".config/iterm2/imgls"]
+  type = "file"
+  url = "https://iterm2.com/utilities/imgls"
+  executable = true
+  refreshPeriod = "168h"
 {{- end }}
 
 # ----- WSL specific ----- #

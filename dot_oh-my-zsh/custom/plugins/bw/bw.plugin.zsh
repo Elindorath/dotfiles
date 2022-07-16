@@ -13,4 +13,4 @@ if [[ ! -f "$ZSH_CACHE_DIR/completions/_bw" ]]; then
   _comps[bw]=_bw
 fi
 
-bw gen-completions zsh >| "$ZSH_CACHE_DIR/completions/_bw" &|
+bw completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_bw" &|

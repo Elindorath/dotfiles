@@ -40,6 +40,12 @@
 #   type = "file"
 #   url = "https://raw.githubusercontent.com/redxtech/zsh-asdf-direnv/master/zsh-asdf-direnv.plugin.zsh"
 #   refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-autocomplete"]
+  type = "archive"
+  url = "https://github.com/marlonrichert/zsh-autocomplete/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 [".oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
   url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"
@@ -52,15 +58,15 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-[".oh-my-zsh/custom/plugins/zsh-completions"]
-  type = "archive"
-  url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
-  exact = true
-  stripComponents = 1
-  refreshPeriod = "168h"
 [".oh-my-zsh/custom/plugins/zsh-bitwarden"]
   type = "archive"
   url = "https://github.com/Game4Move78/zsh-bitwarden/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-completions"]
+  type = "archive"
+  url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
@@ -68,25 +74,35 @@
   type = "file"
   url = "https://raw.githubusercontent.com/mtxr/zsh-change-case/master/change-case.zsh"
   refreshPeriod = "168h"
+[".oh-my-zsh/custom/plugins/zsh-z"]
+  type = "archive"
+  url = "https://github.com/agkozak/zsh-z/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
+
+
+
+# ----- iTerm2 specific ----- #
 {{- if (eq .chezmoi.os "darwin") }}
-# Special commands like imgcat are not included
-# See: https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh
-[".config/iterm2/iterm2_shell_integration.zsh"]
-  type = "file"
-  url = "https://iterm2.com/shell_integration/zsh"
-  executable = true
+[".config/iterm2/integration"]
+  type = "archive"
+  url = "https://github.com/gnachman/iTerm2-shell-integration/archive/master.tar.gz"
+  include = ["*/shell_integration/zsh", "*/utilities/*"]
+  exclude = ["*/utilities/it2ssh"]
+  exact = false
+  stripComponents = 1
   refreshPeriod = "168h"
-[".config/iterm2/imgcat"]
+# For unknown reason, the it2ssh file is the only one that is non executable
+[".config/iterm2/integration/utilities/it2ssh"]
   type = "file"
-  url = "https://iterm2.com/utilities/imgcat"
-  executable = true
-  refreshPeriod = "168h"
-[".config/iterm2/imgls"]
-  type = "file"
-  url = "https://iterm2.com/utilities/imgls"
+  url = "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/main/utilities/it2ssh"
   executable = true
   refreshPeriod = "168h"
 {{- end }}
+# ----- iTerm2 specific ----- #
+
+
 
 # ----- WSL specific ----- #
 {{- if (.wsl) }}
@@ -96,6 +112,8 @@
   refreshPeriod = "168h"
 {{- end }}
 # ----- WSL specific ----- #
+
+
 
 # ----- Fonts for shell ----- #
 {{- $fontDir := "" }}

@@ -50,6 +50,7 @@ plugins=(
   # Might be of interest
   # rsync
   rbw
+  run-help
   # Not in oh-my-zsh: https://github.com/zlsun/solarized-man
   solarized-man
   # Might be of interest
@@ -62,17 +63,21 @@ plugins=(
   you-should-use
   # Not in oh-my-zsh: https://github.com/redxtech/zsh-asdf-direnv
   # zsh-asdf-direnv
+  # Not in oh-my-zsh: https://github.com/marlonrichert/zsh-autocomplete
+  zsh-autocomplete
   # Not in oh-my-zsh: https://github.com/hlissner/zsh-autopair
   zsh-autopair
   # Not in oh-my-zsh: https://github.com/zsh-users/zsh-autosuggestions
   zsh-autosuggestions
+  # Not in oh-my-zsh: https://github.com/Game4Move78/zsh-bitwarden
+  # Depends on bw CLI, jq CLI, and fzf
+  zsh-bitwarden
   # Not in oh-my-zsh: https://github.com/zsh-users/zsh-completions
   # WARNING: Do not uncomment this plugin, it should not appear in the plugins list
   # See: https://github.com/zsh-users/zsh-completions/issues/603
   # zsh-completions
-  # Not in oh-my-zsh: https://github.com/Game4Move78/zsh-bitwarden
-  # Depends on bw CLI, jq CLI, and fzf
-  zsh-bitwarden
+  # Not in oh-my-zsh: https://github.com/agkozak/zsh-z
+  zsh-z
 )
 
 ZSH_CUSTOM="$ZSH/custom"
@@ -172,6 +177,7 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt NO_HIST_IGNORE_SPACE
 setopt NO_HIST_IGNORE_ALL_DUPS
+setopt NO_HIST_EXPIRE_DUPS_FIRST
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt NO_INC_APPEND_HISTORY
@@ -191,15 +197,28 @@ setopt INTERACTIVE_COMMENTS
 # ----- Custom ----- #
 
 {{ if (eq .chezmoi.os "darwin") -}}
-test -e "${HOME}/.config/iterm2/iterm2_shell_integration.zsh" && source "${HOME}/.config/iterm2/iterm2_shell_integration.zsh"
-alias imgcat="${HOME}/.config/iterm2/imgcat"
-alias imgls="${HOME}/.config/iterm2/imgls"
+iterm2_integration_path="${XDG_CONFIG_HOME}/iterm2/integration"
+
+[ -e "${iterm2_integration_path}/shell_integration/zsh" ] && source "${iterm2_integration_path}/shell_integration/zsh"
+
+export PATH="${iterm2_integration_path}/utilities${PATH+:$PATH}"
 {{- end }}
 
 export PATH="${XDG_CONFIG_HOME}/git${PATH+:$PATH}";
 
 # Specific to passwordless-history plugin
 export HISTORY_EXCLUDE_PATTERN="${HISTORY_EXCLUDE_PATTERN}|BW_SESSION[=:] *([^ ]+)|bw +unlock +([^ ]+)"
+
+# Specific to zsh-z plugin
+export ZSHZ_DATA="${XDG_CONFIG_HOME}/z/database"
+export ZSHZ_TILDE=1
+
+# Specific to zsh-autocomplete
+zstyle ':autocomplete:*' ignored-input '..##'
+zstyle ':autocomplete:*' recent-dirs zsh-z
+zstyle ':autocomplete:*' insert-unambiguous yes
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' fzf-completion yes
 
 # ----- Custom ----- #
 

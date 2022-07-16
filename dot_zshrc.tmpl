@@ -198,6 +198,9 @@ alias imgls="${HOME}/.config/iterm2/imgls"
 
 export PATH="${XDG_CONFIG_HOME}/git${PATH+:$PATH}";
 
+# Specific to passwordless-history plugin
+export HISTORY_EXCLUDE_PATTERN="${HISTORY_EXCLUDE_PATTERN}|BW_SESSION[=:] *([^ ]+)|bw +unlock +([^ ]+)"
+
 # ----- Custom ----- #
 
 
@@ -230,6 +233,8 @@ direnv() { asdf exec direnv "$@"; }
 from() { ls -la "$(which "$1")"; }
 
 alias -g G="| grep"
+
+alias dc="docker-compose"
 
 typeset -U path
 

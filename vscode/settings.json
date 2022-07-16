@@ -53,7 +53,8 @@
   "files.associations": {
     "*.json": "json",
     "*.tmpl": "go-template",
-    "*.yml": "ansible"
+    "*.yml": "ansible",
+    ".envrc": "dotenv"
   },
   "explorer.confirmDragAndDrop": false,
   "polacode.backgroundColor": "#ffffff",

@@ -1,6 +1,11 @@
 #! /usr/bin/env zsh
 # shellcheck shell=bash
 
+# --------------------------------------------------------------------------- #
+# This file is kept for future reference                                      #
+# It is not needed nor loaded as chezmoi completions are provided by homebrew #
+# --------------------------------------------------------------------------- #
+
 if (( ! $+commands[chezmoi] )); then
   return
 fi

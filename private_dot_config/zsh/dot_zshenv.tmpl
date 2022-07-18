@@ -1,0 +1,24 @@
+#! /usr/bin/env zsh
+# shellcheck shell=bash
+
+export LC_ALL="en_US.UTF-8"
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR="vim"
+else
+  export EDITOR="code --wait"
+fi
+
+export VISUAL="code --wait"
+
+# Brew
+export HOMEBREW_GITHUB_API_TOKEN={{ (bitwardenFields "item" "Homebrew").HOMEBREW_GITHUB_API_TOKEN.value }}
+export HOMEBREW_PREFIX="{{ .homebrew_prefix }}";
+export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
+export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew";
+export HOMEBREW_SHELLENV_PREFIX="${HOMEBREW_PREFIX}";
+export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+
+typeset -U path

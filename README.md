@@ -15,24 +15,12 @@
 ├── .docker/
 ├── .envrc
 ├── .expo/
-├── .gitconfig
-├── .lesshst
 ├── .local/
-├── .node-gyp/
-├── .npm/
-├── .oh-my-zsh/
-├── .p10k.zsh
-├── .redhat/
 ├── .tool-versions
-├── .viminfo
 ├── .vscode/
 ├── .yarnrc
 ├── .zcompdump--5.9
-├── .zlogin
-├── .zsh_history
-├── .zsh_sessions/
 ├── .zshenv
-├── .zshrc
 ├── Applications/
 ├── Desktop/
 ├── Documents/
@@ -45,7 +33,7 @@
 ├── Screenshots/
 └── dev/
 
-25 directories, 15 files
+20 directories, 8 files
 ```
 
 ## Explanations
@@ -60,6 +48,8 @@ Stores the default text encoding and preferred language
 
 See: <https://superuser.com/questions/82123/mac-whats-cfusertextencoding-for>
 
+Required, should not be removed
+
 </details>
 
 <details>
@@ -72,6 +62,8 @@ Stores the Finder view settings of the directory
 
 See: <https://www.arno.org/on-the-origins-of-ds-store>
 
+Required, should not be removed
+
 </details>
 
 <details>
@@ -81,6 +73,8 @@ See: <https://www.arno.org/on-the-origins-of-ds-store>
   </summary>
 
 Stores the Trash (yeah, you guessed it)
+
+Required, should not be removed
 
 </details>
 
@@ -166,7 +160,7 @@ See: <https://github.com/docker/cli/issues/2423>
     <i></i>
   </summary>
 
-Used automatically by direnv when navigating with zsh
+Used automatically by `direnv` when navigating with zsh to use asdf and exporting environment
 
 Required, should not be removed
 
@@ -184,18 +178,223 @@ See: <https://github.com/expo/expo-cli/pull/3722>
 
 </details>
 
-<details open>
+<details>
   <summary>
-    <b>.gitconfig</b>
+    <b>.local/</b>
     <i></i>
   </summary>
 
+Part of the XDG Base Directory Specification, contains the `XDG_DATA_HOME`, `XDG_STATE_HOME` and `XDG_BIN_HOME`
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>.tool-versions</b>
+    <i></i>
+  </summary>
+
+Used automatically by `asdf` when navigating with zsh to exposed the configured tool version binaries
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>.vscode/</b>
+    <i></i>
+  </summary>
+
+Stores the VSCode extensions and the `argv.json` file (to launch VSCode with default arguments)
+
+The extensions path seems to be configurable, but not the `argv.json` location
+
+See: <https://github.com/microsoft/vscode/issues/3884> and <https://github.com/microsoft/vscode/issues/84808>
+
+</details>
+
+<details>
+  <summary>
+    <b>.yarnrc</b>
+    <i></i>
+  </summary>
+
+Stores the `yarn` global configuration
+
 Doesn't seem to be configurable yet
 
-See: <https://github.com/expo/expo-cli/pull/3722>
+See: <https://github.com/yarnpkg/yarn/issues/2334>
+
+</details>
+
+<details>
+  <summary>
+    <b>.zcompdump--5.9</b>
+    <i></i>
+  </summary>
+
+Stores the dumped data of the `compinit` command
+
+Should be configurable with `compinit -d <directory>`
+
+See: <https://stackoverflow.com/questions/47745184/change-location-of-zcompdump-files> and <https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Use-of-compinit>
+
+</details>
+
+<details>
+  <summary>
+    <b>.zshenv</b>
+    <i></i>
+  </summary>
+
+Used at startup by zsh. It set the `$ZDOTFILE` environment variable to specify the directory where zsh configuration files live.
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Applications/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the desktop applications (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Desktop/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the files visible on desktop (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Documents/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the documents (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Downloads/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the downloaded files (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Library/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the system and applications files (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Movies/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the movie files (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Music/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the audio files (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Pictures/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the pictures files (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Public/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the files accessible by other users (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>Screenshots/</b>
+    <i></i>
+  </summary>
+
+Stores the screenshots (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>dev/</b>
+    <i></i>
+  </summary>
+
+Stores all of the projects I work on
+
+Required, should not be removed
 
 </details>
 
 ## Todo
 
-- [ ] `~/.ansible` will be configurable with `ANSIBLE_HOME` environment variable in ansible-core v2.14
+- [ ] `~/.ansible/`
+- [ ] `~/.asdf/`
+- [ ] `.bash_history`
+- [ ] `.docker/`
+- [ ] `.expo/`
+- [ ] `.vscode/`
+- [ ] `.yarnrc`
+- [ ] `.zcompdump--5.9`

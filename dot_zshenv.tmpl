@@ -19,19 +19,7 @@
 # | .zlogout  |      X      |        X        |      -      |        -        |
 # |-----------|-------------|-----------------|-------------|-----------------|
 
-# ZDOTDIR is an internal zsh variable that specify the location of zsh configuration files
-# shellcheck disable=SC2034
-# ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell/zsh"
 
-export LC_ALL="en_US.UTF-8"
-
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vim"
-else
-  export EDITOR="code --wait"
-fi
-
-export VISUAL="code --wait"
 
 # Use sane default for XDG directories
 # See: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -46,14 +34,7 @@ export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
-# Brew
-export HOMEBREW_GITHUB_API_TOKEN={{ (bitwardenFields "item" "Homebrew").HOMEBREW_GITHUB_API_TOKEN.value }}
-export HOMEBREW_PREFIX="{{ .homebrew_prefix }}";
-export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
-export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew";
-export HOMEBREW_SHELLENV_PREFIX="${HOMEBREW_PREFIX}";
-export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
-export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
-
-typeset -U path
+# ZDOTDIR is an internal zsh variable that specify the location of zsh configuration files
+# shellcheck disable=SC2034
+ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+source "${ZDOTDIR}/.zshenv"

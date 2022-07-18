@@ -79,7 +79,6 @@
     "jupyter-notebook": "left"
   },
   "hadolint.hadolintPath": "/usr/local/bin/hadolint",
-  "redhat.telemetry.enabled": true,
   "shellcheck.customArgs": [
     "-x"
   ],

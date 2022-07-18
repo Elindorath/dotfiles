@@ -1,0 +1,17 @@
+" ----- XDG compliant paths ----- "
+set directory=${XDG_CACHE_HOME}/vim,~/,/tmp " For .swap files
+set backupdir=${XDG_CACHE_HOME}/vim,~/,/tmp " For .bak files
+set viminfo+=n${XDG_STATE_HOME}/vim/viminfo " For the viminfo file
+set runtimepath=${XDG_CONFIG_HOME}/vim,{{ .homebrew_prefix }}/share/vim/vimfiles,{{ .homebrew_prefix }}/share/vim/vim90,{{ .homebrew_prefix }}/share/vim/vimfiles/after,${XDG_CONFIG_HOME}/vim/after
+set packpath=${XDG_CONFIG_HOME}/vim,{{ .homebrew_prefix }}/share/vim/vimfiles,{{ .homebrew_prefix }}/share/vim/vim90,{{ .homebrew_prefix }}/share/vim/vimfiles/after,${XDG_CONFIG_HOME}/vim/after
+
+" ----- Settings ----- "
+syntax on " Enable syntaxic colors
+set number " Display line number
+set mouse=a " Enable mouse support
+set hlsearch " Highlight search matches
+map <esc> :noh <CR> " Remove highlights when hitting the escape key
+
+" ----- vim-airline ----- "
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'

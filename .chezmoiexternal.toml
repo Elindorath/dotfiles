@@ -32,6 +32,12 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+[".config/oh-my-zsh/custom/plugins/jq"]
+  type = "archive"
+  url = "https://github.com/reegnz/jq-zsh-plugin/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/passwordless-history/passwordless-history.plugin.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/jgogstad/passwordless-history/master/passwordless-history.plugin.zsh"

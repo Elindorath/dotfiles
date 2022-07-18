@@ -1,0 +1,12 @@
+#! /usr/bin/env zsh
+# shellcheck shell=bash
+
+# MacOS has the utility `path_helper`, used in the `/etc/zprofile`
+# This utility doesn't preserve `PATH` and `MANPATH` order
+# This behavior prevents us to customize the both variables in `.zshenv`
+# See `dotfiles/dot_zshenv.tmpl` for configuration files loading
+export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
+
+# Ensure path entries are deduplicated
+typeset -U path PATH

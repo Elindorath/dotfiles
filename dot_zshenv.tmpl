@@ -38,3 +38,6 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 # shellcheck disable=SC2034
 ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 source "${ZDOTDIR}/.zshenv"
+
+# Ensure path entries are deduplicated
+typeset -U path PATH

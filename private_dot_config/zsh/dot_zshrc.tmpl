@@ -267,7 +267,8 @@ alias -g Gi="| grep -i"
 
 alias dc="docker-compose"
 
-typeset -U path
+# Ensure path entries are deduplicated
+typeset -U path PATH
 
 # ----- Aliases ----- #
 

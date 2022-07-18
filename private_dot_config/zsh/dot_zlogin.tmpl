@@ -11,4 +11,5 @@ eval "$(/opt/local/bin/brew shellenv)"
 
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-typeset -U path
+# Ensure path entries are deduplicated
+typeset -U path PATH

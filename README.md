@@ -8,7 +8,6 @@
 ├── .DS_Store # Mac specific
 ├── .Trash/ # Mac specific
 ├── .ansible/
-├── .asdf/
 ├── .bash_history
 ├── .cache/
 ├── .config/
@@ -19,7 +18,6 @@
 ├── .tool-versions
 ├── .vscode/
 ├── .yarnrc
-├── .zcompdump--5.9
 ├── .zshenv
 ├── Applications/
 ├── Desktop/
@@ -33,7 +31,7 @@
 ├── Screenshots/
 └── dev/
 
-20 directories, 8 files
+19 directories, 7 files
 ```
 
 ## Explanations
@@ -89,20 +87,6 @@ Stores all ansible files
 Will be configurable with the `ANSIBLE_HOME` environment variable in ansible-core v2.14
 
 See: <https://github.com/ansible/ansible/pull/76114>
-
-</details>
-
-<details>
-  <summary>
-    <b>.asdf/</b>
-    <i></i>
-  </summary>
-
-Stores all asdf files
-
-Configurable with the `ASDF_DATA_DIR` environment variable (should be set before sourcing `asdf.sh`)
-
-See: <https://asdf-vm.com/manage/configuration.html#environment-variables>
 
 </details>
 
@@ -227,20 +211,6 @@ Stores the `yarn` global configuration
 Doesn't seem to be configurable yet
 
 See: <https://github.com/yarnpkg/yarn/issues/2334>
-
-</details>
-
-<details>
-  <summary>
-    <b>.zcompdump--5.9</b>
-    <i></i>
-  </summary>
-
-Stores the dumped data of the `compinit` command
-
-Should be configurable with `compinit -d <directory>`
-
-See: <https://stackoverflow.com/questions/47745184/change-location-of-zcompdump-files> and <https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Use-of-compinit>
 
 </details>
 
@@ -391,10 +361,8 @@ Required, should not be removed
 ## Todo
 
 - [ ] `~/.ansible/`
-- [ ] `~/.asdf/`
 - [ ] `.bash_history`
 - [ ] `.docker/`
 - [ ] `.expo/`
 - [ ] `.vscode/`
 - [ ] `.yarnrc`
-- [ ] `.zcompdump--5.9`

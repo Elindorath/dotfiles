@@ -36,7 +36,7 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # ZDOTDIR is an internal zsh variable that specify the location of zsh configuration files
 # shellcheck disable=SC2034
-ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 source "${ZDOTDIR}/.zshenv"
 
 # Ensure path entries are deduplicated

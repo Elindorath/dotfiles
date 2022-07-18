@@ -35,6 +35,7 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.iconTheme": "material-icon-theme",
   "git.autofetch": true,
+  "redhat.telemetry.enabled": false,
   "terraform.indexing": {
     "enabled": false,
     "liveIndexing": true,

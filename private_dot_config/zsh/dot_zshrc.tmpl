@@ -216,6 +216,9 @@ zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' fzf-completion yes
 
+zle -A {.,}history-incremental-search-forward
+zle -A {.,}history-incremental-search-backward
+
 # Specific to the less pager
 export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 

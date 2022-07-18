@@ -1,3 +1,5 @@
+# ----- Zsh plugins ----- #
+
 [".config/oh-my-zsh"]
   type = "archive"
   url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
@@ -24,6 +26,12 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+[".config/oh-my-zsh/custom/plugins/git"]
+  type = "archive"
+  url = "https://github.com/davidde/git/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/passwordless-history/passwordless-history.plugin.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/jgogstad/passwordless-history/master/passwordless-history.plugin.zsh"
@@ -36,10 +44,6 @@
   type = "file"
   url = "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/master/you-should-use.plugin.zsh"
   refreshPeriod = "168h"
-# [".config/oh-my-zsh/custom/plugins/zsh-asdf-direnv/zsh-asdf-direnv.plugin.zsh"]
-#   type = "file"
-#   url = "https://raw.githubusercontent.com/redxtech/zsh-asdf-direnv/master/zsh-asdf-direnv.plugin.zsh"
-#   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/zsh-autocomplete"]
   type = "archive"
   url = "https://github.com/marlonrichert/zsh-autocomplete/archive/master.tar.gz"
@@ -80,6 +84,13 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+
+# ----- Zsh plugins ----- #
+
+
+
+# ----- Vim ----- #
+
 [".config/vim/pack/plugins/start/vim-airline"]
   type = "archive"
   url = "https://github.com/vim-airline/vim-airline/archive/master.tar.gz"
@@ -93,9 +104,12 @@
   stripComponents = 1
   refreshPeriod = "168h"
 
+# ----- Vim ----- #
+
 
 
 # ----- iTerm2 specific ----- #
+
 {{- if (eq .chezmoi.os "darwin") }}
 [".config/iterm2/integration"]
   type = "archive"
@@ -112,22 +126,26 @@
   executable = true
   refreshPeriod = "168h"
 {{- end }}
+
 # ----- iTerm2 specific ----- #
 
 
 
 # ----- WSL specific ----- #
+
 {{- if (.wsl) }}
 ["{{ .xdg_bin_home }}/wsl-open.sh"]
   type = "file"
   url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
   refreshPeriod = "168h"
 {{- end }}
+
 # ----- WSL specific ----- #
 
 
 
 # ----- Fonts for shell ----- #
+
 {{- $fontDir := "" }}
 {{- if (.wsl) }}
 {{-   $fontDir = print .win_home "/AppData/Local/Microsoft/Windows/Fonts" | trim }}
@@ -152,4 +170,5 @@
     type = "file"
     url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
     refreshPeriod = "168h"
+
 # ----- Fonts for shell ----- #

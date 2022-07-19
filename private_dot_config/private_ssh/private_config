@@ -1,5 +1,6 @@
 Host *
   AddKeysToAgent yes
+  UseKeychain yes
   HashKnownHosts yes
   UserKnownHostsFile ${XDG_CONFIG_HOME}/ssh/known_hosts
 

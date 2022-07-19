@@ -51,8 +51,8 @@ plugins=(
   run-help
   # Not in oh-my-zsh: https://github.com/zlsun/solarized-man
   solarized-man
-  # Might be of interest
-  # ssh-agent
+  # Not in oh-my-zsh: customized to use xdg compliant paths
+  ssh-agent
   sudo
   terraform
   vscode
@@ -121,6 +121,11 @@ DISABLE_AUTO_UPDATE=true
 fpath+="${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src"
 
 fpath+="$(brew --prefix)/share/zsh/site-functions"
+
+# Specific to the ssh-agent plugin
+zstyle :omz:plugins:ssh-agent identities ${XDG_CONFIG_HOME}/ssh/{id_rsa,github_ed25519,gitlab_rsa}
+zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain
+zstyle :omz:plugins:ssh-agent quiet yes
 
 # shellcheck source=/home/elindorath/.oh-my-zsh/oh-my-zsh.sh
 source "$ZSH/oh-my-zsh.sh"

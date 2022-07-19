@@ -34,8 +34,6 @@ plugins=(
   git
   gpg-agent
   # Might be of interest
-  # history
-  # Might be of interest
   # httpie
   # Not in oh-my-zsh: https://github.com/reegnz/jq-zsh-plugin
   jq
@@ -229,6 +227,13 @@ export NPM_CONFIG_DEVDIR="${XDG_CACHE_HOME}/node-gyp"
 
 # Specific to vim
 export VIMINIT="source ${XDG_CONFIG_HOME}/vim/vimrc"
+
+# Specific to ssh
+if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
+  alias ssh="ssh -F ${XDG_CONFIG_HOME}/ssh/config"
+  alias scp="scp -F ${XDG_CONFIG_HOME}/ssh/config"
+  alias rsync="echo error: It\'s your zshrc, you probably want to customize this alias with the -e option"
+fi
 
 # ----- Custom ----- #
 

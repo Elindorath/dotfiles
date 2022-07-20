@@ -21,5 +21,7 @@ export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 export ASDF_DATA_DIR="${XDG_CONFIG_HOME}/asdf"
 
+export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
+
 # Ensure path entries are deduplicated
 typeset -U path PATH

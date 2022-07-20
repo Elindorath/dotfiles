@@ -1,7 +1,7 @@
 [user]
 	email = elindorath@gmail.com
 	name = Joachim Westphal
-	# signingkey = 8E8B828A
+	signingkey = 16879A4B
 [push]
 	default = simple
 [core]
@@ -13,14 +13,16 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-# [commit]
-# 	gpgsign = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
 [diff]
 	tool = default-difftool
 [difftool "default-difftool"]
 	cmd = code --wait --diff $LOCAL $REMOTE
-# [gpg]
-# 	program = /usr/local/bin/gpg
+[gpg]
+	program = {{ .homebrew_prefix }}/bin/gpg
 [pull]
 	rebase = true
 [credential]

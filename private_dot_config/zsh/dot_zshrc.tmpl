@@ -276,11 +276,13 @@ alias -g Gi="| grep -i"
 
 alias dc="docker-compose"
 
-# Replace most used ls command with exa
+# Replace ls and tree commands with exa
 alias ls="exa --icons"
 alias la="exa --icons --all"
 alias l="exa --icons --all --long --group --header"
 alias ll="exa --icons --long --group --header"
+alias tree="exa --tree"
+alias treee="exa --tree --icons --all --level 1 --classify"
 
 # Required by pinentry-touchid
 alias pinentry="pinentry-mac"

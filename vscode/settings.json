@@ -89,5 +89,8 @@
   ],
   "[python]": {
     "editor.tabSize": 4
-  }
+  },
+  "xml.server.binary.trustedHashes": [
+    "c64f9b53e9983e224748f43f6be8b32af18a85f6ec88d4b0c73799c286788758"
+  ]
 }

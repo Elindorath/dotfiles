@@ -167,7 +167,7 @@ NULLCMD="cat"
 # The command to use for redirection of stdin (<) without command
 READNULLCMD="less"
 
-watch=(all)
+watch=(notme)
 WATCHFMT="%n has %a %l from %M at %T %D{%Y/%m/%d}"
 
 setopt INC_APPEND_HISTORY
@@ -238,6 +238,10 @@ if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
   alias ssh="ssh -F ${XDG_CONFIG_HOME}/ssh/config"
   alias scp="scp -F ${XDG_CONFIG_HOME}/ssh/config"
   alias rsync="echo error: It\'s your zshrc, you probably want to customize this alias with the -e option"
+  # Yarn doesn't respect the git configuration key `core.sshCommand`
+  # It puts a custom GIT_SSH_COMMAND variable in the environment of the spawned git command
+  # See: https://github.com/yarnpkg/yarn/blob/6db39cf0ff684ce4e7de29669046afb8103fce3d/src/util/git/git-spawn.js
+  alias yarn="GIT_SSH_COMMAND=\"ssh -F ${XDG_CONFIG_HOME}/ssh/config -oBatchMode=yes\" yarn"
 fi
 
 # ----- Custom ----- #
@@ -275,6 +279,14 @@ alias -g G="| grep"
 alias -g Gi="| grep -i"
 
 alias dc="docker-compose"
+
+# chezmoi aliases
+alias dot="code $(chezmoi source-path)"
+alias dots="chezmoi git -- status"
+alias dotd="chezmoi git -- diff"
+alias dota="chezmoi git -- add"
+alias dotc="chezmoi git -- commit"
+alias dotp="chezmoi git -- push"
 
 # Replace ls and tree commands with exa
 alias ls="exa --icons"

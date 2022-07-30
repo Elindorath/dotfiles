@@ -30,4 +30,7 @@
 pattern = "**/*.plist"
 command = "plutil"
 args = ["-convert", "xml1", "-o", "-", "-"]
-{{- end -}}
+{{- end }}
+
+[diff]
+  pager = "delta \"$(if [ $(tput cols) -gt 160 ]; then echo '-s'; else echo '--pager=less'; fi)\""

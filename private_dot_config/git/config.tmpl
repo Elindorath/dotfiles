@@ -2,28 +2,51 @@
 	email = elindorath@gmail.com
 	name = Joachim Westphal
 	signingkey = 16879A4B
+
 [push]
 	default = simple
+
 [core]
 	editor = code --wait
+	# Hacky way of telling delta to display side-by-side diff when there is sufficient terminal width
+	pager = delta "$(if [ $(tput cols) -gt 160 ]; then echo '-s'; else echo '--pager=less'; fi)"
 	excludesfile = {{ .chezmoi.homeDir }}.gitignore_global
 	sshCommand = "ssh -F ${XDG_CONFIG_HOME}/ssh/config"
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [commit]
 	gpgsign = true
+
 [tag]
 	gpgsign = true
+
 [diff]
 	tool = default-difftool
+
 [difftool "default-difftool"]
 	cmd = code --wait --diff $LOCAL $REMOTE
+
 [gpg]
 	program = {{ .homebrew_prefix }}/bin/gpg
+
 [pull]
 	rebase = true
+
 [credential]
 	helper = rbw
+
+[delta]
+	features = decorations
+	line-numbers = true
+
+[delta "decorations"]
+	file-decoration-style = blue ul ol
+	file-style = blue
+	hunk-header-decoration-style = hidden
+	hunk-header-style = omit
+	syntax-theme = Solarized (dark)

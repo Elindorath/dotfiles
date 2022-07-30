@@ -56,6 +56,7 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**"]
 [".config/oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
   url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"

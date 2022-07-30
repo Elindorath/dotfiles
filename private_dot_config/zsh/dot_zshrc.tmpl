@@ -288,6 +288,11 @@ alias dota="chezmoi git -- add"
 alias dotc="chezmoi git -- commit"
 alias dotp="chezmoi git -- push"
 
+# Specific to bat
+# Replace cat with bat
+alias cat="bat --paging=never"
+alias -g -- --help="--help | bat --plain --language=help"
+
 # Replace ls and tree commands with exa
 alias ls="exa --icons"
 alias la="exa --icons --all"

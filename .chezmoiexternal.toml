@@ -3,10 +3,11 @@
 [".config/oh-my-zsh"]
   type = "archive"
   url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-  # waiting for https://github.com/twpayne/chezmoi/issues/1614#issuecomment-966524408
+  # waiting for https://github.com/twpayne/chezmoi/issues/1574
   # exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/themes/powerlevel10k"]
   type = "archive"
   url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
@@ -14,33 +15,42 @@
   exact = false
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/clipboard"]
   type = "archive"
   url = "https://github.com/zpm-zsh/clipboard/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
   type = "archive"
   url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/git"]
   type = "archive"
   url = "https://github.com/davidde/git/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/jq"]
   type = "archive"
   url = "https://github.com/reegnz/jq-zsh-plugin/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/passwordless-history/passwordless-history.plugin.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/jgogstad/passwordless-history/master/passwordless-history.plugin.zsh"
+  refreshPeriod = "168h"
+[".config/oh-my-zsh/custom/plugins/pnpm/completions"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/baliestri/pnpm.plugin.zsh/main/_pnpm"
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/solarized-man/solarized-man.plugin.zsh"]
   type = "file"
@@ -56,31 +66,35 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-  exclude = ["*/.github/**"]
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
   url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-autosuggestions"]
   type = "archive"
   url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-bitwarden"]
   type = "archive"
   url = "https://github.com/Game4Move78/zsh-bitwarden/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-completions"]
   type = "archive"
   url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-change-case/change-case.zsh"]
   type = "file"
   url = "https://raw.githubusercontent.com/mtxr/zsh-change-case/master/change-case.zsh"
@@ -91,6 +105,7 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 
 # ----- Zsh plugins ----- #
 
@@ -104,12 +119,14 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 [".config/vim/pack/themes/start/vim-airline-themes"]
   type = "archive"
   url = "https://github.com/vim-airline/vim-airline-themes/archive/master.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/.github/**", "**/*.md"]
 
 # ----- Vim ----- #
 
@@ -122,10 +139,10 @@
   type = "archive"
   url = "https://github.com/gnachman/iTerm2-shell-integration/archive/master.tar.gz"
   include = ["*/shell_integration/zsh", "*/utilities/*"]
-  exclude = ["*/utilities/it2ssh"]
   exact = false
   stripComponents = 1
   refreshPeriod = "168h"
+  exclude = ["*/utilities/it2ssh", "*/.github/**", "**/*.md"]
 # For unknown reason, the it2ssh file is the only one that is non executable
 [".config/iterm2/integration/utilities/it2ssh"]
   type = "file"

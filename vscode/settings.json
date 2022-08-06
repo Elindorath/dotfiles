@@ -55,7 +55,8 @@
     "*.json": "json",
     "*.tmpl": "go-template",
     "*.yml": "ansible",
-    ".envrc": "dotenv"
+    ".envrc": "dotenv",
+    ".prettierignore": "gitignore"
   },
   "explorer.confirmDragAndDrop": false,
   "polacode.backgroundColor": "#ffffff",
@@ -66,8 +67,6 @@
       "mode": "auto"
     }
   ],
-  "synthwave84.brightness": 0.65,
-  "synthwave84.disableGlow": true,
   "yaml.customTags": [
     "!encrypted/pkcs1-oaep scalar",
     "!vault scalar"
@@ -92,5 +91,22 @@
   },
   "xml.server.binary.trustedHashes": [
     "c64f9b53e9983e224748f43f6be8b32af18a85f6ec88d4b0c73799c286788758"
-  ]
+  ],
+  "cSpell.userWords": [
+    "Dafuck",
+    "elindorath",
+    "facebook",
+    "geolocation",
+    "mapbox",
+    "signin",
+    "signup",
+    "staycation",
+    "Staycation",
+    "staycations",
+    "twic",
+    "unmock",
+    "Westphal"
+  ],
+  "gitlens.rebaseEditor.ordering": "asc",
+  "cSpell.language": "en,fr"
 }

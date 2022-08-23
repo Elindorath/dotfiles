@@ -4,18 +4,19 @@
 
 ```toml
 ~/
-├── .CFUserTextEncoding # Mac specific
-├── .DS_Store # Mac specific
-├── .Trash/ # Mac specific
 ├── .ansible/
 ├── .bash_history
 ├── .cache/
+├── .CFUserTextEncoding
 ├── .config/
 ├── .docker/
+├── .DS_Store
 ├── .envrc
 ├── .expo/
 ├── .local/
+├── .rndebuggerrc
 ├── .tool-versions
+├── .Trash/
 ├── .vscode/
 ├── .yarnrc
 ├── .zshenv
@@ -31,50 +32,10 @@
 ├── Screenshots/
 └── dev/
 
-19 directories, 7 files
+19 directories, 8 files
 ```
 
 ## Explanations
-
-<details>
-  <summary>
-    <b>.CFUserTextEncoding</b>
-    <i>(Mac specific)</i>
-  </summary>
-
-Stores the default text encoding and preferred language
-
-See: <https://superuser.com/questions/82123/mac-whats-cfusertextencoding-for>
-
-Required, should not be removed
-
-</details>
-
-<details>
-  <summary>
-    <b>.DS_Store</b>
-    <i>(Mac specific)</i>
-  </summary>
-
-Stores the Finder view settings of the directory
-
-See: <https://www.arno.org/on-the-origins-of-ds-store>
-
-Required, should not be removed
-
-</details>
-
-<details>
-  <summary>
-    <b>.Trash/</b>
-    <i>(Mac specific)</i>
-  </summary>
-
-Stores the Trash (yeah, you guessed it)
-
-Required, should not be removed
-
-</details>
 
 <details>
   <summary>
@@ -116,6 +77,20 @@ Required, should not be removed
 
 <details>
   <summary>
+    <b>.CFUserTextEncoding</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the default text encoding and preferred language
+
+See: <https://superuser.com/questions/82123/mac-whats-cfusertextencoding-for>
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
     <b>.config/</b>
     <i></i>
   </summary>
@@ -135,6 +110,20 @@ Required, should not be removed
 Doesn't seem to be configurable yet
 
 See: <https://github.com/docker/cli/issues/2423>
+
+</details>
+
+<details>
+  <summary>
+    <b>.DS_Store</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the Finder view settings of the directory
+
+See: <https://www.arno.org/on-the-origins-of-ds-store>
+
+Required, should not be removed
 
 </details>
 
@@ -176,11 +165,37 @@ Required, should not be removed
 
 <details>
   <summary>
+    <b>.rndebuggerrc</b>
+    <i></i>
+  </summary>
+
+Stores the `react-native-debugger` global configuration
+
+Doesn't seem to be configurable.
+
+Consider making a PR to change [this](https://github.com/jhen0409/react-native-debugger/blob/a3963ac60f22958005e6ed41721eeeffffb35d91/electron/config/index.js#L7:L10)
+
+</details>
+
+<details>
+  <summary>
     <b>.tool-versions</b>
     <i></i>
   </summary>
 
 Used automatically by `asdf` when navigating with zsh to exposed the configured tool version binaries
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>.Trash/</b>
+    <i>(Mac specific)</i>
+  </summary>
+
+Stores the Trash (yeah, you guessed it)
 
 Required, should not be removed
 
@@ -245,6 +260,18 @@ Required, should not be removed
   </summary>
 
 Stores the files visible on desktop (yeah, you guessed it)
+
+Required, should not be removed
+
+</details>
+
+<details>
+  <summary>
+    <b>dev/</b>
+    <i></i>
+  </summary>
+
+Stores all of the projects I work on
 
 Required, should not be removed
 
@@ -341,18 +368,6 @@ Required, should not be removed
   </summary>
 
 Stores the screenshots (yeah, you guessed it)
-
-Required, should not be removed
-
-</details>
-
-<details>
-  <summary>
-    <b>dev/</b>
-    <i></i>
-  </summary>
-
-Stores all of the projects I work on
 
 Required, should not be removed
 

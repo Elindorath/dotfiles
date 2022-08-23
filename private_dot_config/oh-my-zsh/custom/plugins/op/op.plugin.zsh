@@ -13,4 +13,4 @@ if [[ ! -f "$ZSH_CACHE_DIR/completions/_op" ]]; then
   _comps[op]=_op
 fi
 
-op completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_op" &|
+op completion zsh >| "$ZSH_CACHE_DIR/completions/_op" &|

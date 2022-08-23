@@ -1,0 +1,8 @@
+[default]
+region=eu-west-3
+output=json
+
+[profile staycation]
+region=eu-west-3
+output=json
+credential_process = sh -c "op item get xxelxwvlvsuh3732efydywhnxm --fields label=aws_access_key_id,label=aws_secret_access_key --format=json  | jq 'map({ (.label):.value }) | add | { Version:1, AccessKeyId:.aws_access_key_id, SecretAccessKey:.aws_secret_access_key }'"

@@ -246,6 +246,9 @@ if [ -s "${XDG_CONFIG_HOME}/ssh/config" ]; then
   alias yarn="GIT_SSH_COMMAND=\"ssh -F ${XDG_CONFIG_HOME}/ssh/config -oBatchMode=yes\" yarn"
 fi
 
+# Specific to AWS
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
+
 # ----- Custom ----- #
 
 

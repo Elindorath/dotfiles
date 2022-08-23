@@ -37,11 +37,13 @@ plugins=(
   # httpie
   # Not in oh-my-zsh: https://github.com/reegnz/jq-zsh-plugin
   jq
-  node
-  npm
 {{- if (eq .chezmoi.os "darwin") }}
   macos
 {{- end }}
+  node
+  npm
+  # My own plugin
+  op
   # Not in oh-my-zsh: https://github.com/jgogstad/passwordless-history
   passwordless-history
   pnpm

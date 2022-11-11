@@ -4,7 +4,7 @@
   "files.insertFinalNewline": true,
   "editor.find.seedSearchStringFromSelection": true,
   "editor.scrollBeyondLastLine": true,
-  "window.title": "${appName}",
+  "window.title": "${rootName}",
   "editor.tabSize": 2,
   "files.trimTrailingWhitespace": true,
   "editor.formatOnPaste": true,
@@ -31,7 +31,6 @@
   "eslint.packageManager": "yarn",
   "git.enableCommitSigning": true,
   "git.showPushSuccessNotification": true,
-  "window.zoomLevel": 0,
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.iconTheme": "material-icon-theme",
   "git.autofetch": true,
@@ -97,8 +96,10 @@
     "Dafuck",
     "elindorath",
     "esmodule",
+    "esnext",
     "facebook",
     "flowtype",
+    "forwardable",
     "geolocation",
     "linkedin",
     "mapbox",
@@ -118,5 +119,8 @@
     "Westphal"
   ],
   "gitlens.rebaseEditor.ordering": "asc",
-  "cSpell.language": "en,fr"
+  "cSpell.language": "en,fr",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }

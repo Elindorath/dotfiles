@@ -157,12 +157,12 @@
 
 # ----- WSL specific ----- #
 
-{{- if (.wsl) }}
-["{{ .xdg_bin_home }}/wsl-open.sh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
-  refreshPeriod = "168h"
-{{- end }}
+#{{- if (.wsl) }}
+#["{{ .xdg_bin_home }}/wsl-open.sh"]
+#  type = "file"
+#  url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+#  refreshPeriod = "168h"
+#{{- end }}
 
 # ----- WSL specific ----- #
 
@@ -170,29 +170,29 @@
 
 # ----- Fonts for shell ----- #
 
-{{- $fontDir := "" }}
-{{- if (.wsl) }}
-{{-   $fontDir = print .win_home "/AppData/Local/Microsoft/Windows/Fonts" | trim }}
-{{- else if (eq .chezmoi.os "darwin") }}
-{{-   $fontDir = "Library/Fonts" }}
-{{- else if (eq .chezmoi.os "linux") }}
-{{-   $fontDir = ".local/share/fonts" }}
-{{- end }}
-["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
-    refreshPeriod = "168h"
-["{{ $fontDir }}/MesloLGS NF Bold.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
-    refreshPeriod = "168h"
-["{{ $fontDir }}/MesloLGS NF Italic.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
-    refreshPeriod = "168h"
-["{{ $fontDir }}/MesloLGS NF Bold Italic.ttf"]
-    type = "file"
-    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
-    refreshPeriod = "168h"
+#{{- $fontDir := "" }}
+#{{- if (.wsl) }}
+#{{-   $fontDir = print .win_home "/AppData/Local/Microsoft/Windows/Fonts" | trim }}
+#{{- else if (eq .chezmoi.os "darwin") }}
+#{{-   $fontDir = "Library/Fonts" }}
+#{{- else if (eq .chezmoi.os "linux") }}
+#{{-   $fontDir = ".local/share/fonts" }}
+#{{- end }}
+#["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
+#    type = "file"
+#    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf"
+#    refreshPeriod = "168h"
+#["{{ $fontDir }}/MesloLGS NF Bold.ttf"]
+#    type = "file"
+#    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold.ttf"
+#    refreshPeriod = "168h"
+#["{{ $fontDir }}/MesloLGS NF Italic.ttf"]
+#    type = "file"
+#    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Italic.ttf"
+#    refreshPeriod = "168h"
+#["{{ $fontDir }}/MesloLGS NF Bold Italic.ttf"]
+#    type = "file"
+#    url = "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Bold Italic.ttf"
+#    refreshPeriod = "168h"
 
 # ----- Fonts for shell ----- #

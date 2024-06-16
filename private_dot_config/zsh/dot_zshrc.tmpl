@@ -51,8 +51,6 @@ plugins=(
   npm
   # My own plugin
   op
-  # Not in oh-my-zsh: https://github.com/jgogstad/passwordless-history
-  passwordless-history
   pnpm
   postgres
   # Might be of interest
@@ -80,6 +78,8 @@ plugins=(
   # Not in oh-my-zsh: https://github.com/Game4Move78/zsh-bitwarden
   # Depends on bw CLI, jq CLI, and fzf
   zsh-bitwarden
+  # Not in oh-my-zsh: https://github.com/jgogstad/zsh-mask
+  zsh-mask
   # Not in oh-my-zsh: https://github.com/zsh-users/zsh-completions
   # WARNING: Do not uncomment this plugin, it should not appear in the plugins list
   # See: https://github.com/zsh-users/zsh-completions/issues/603
@@ -215,7 +215,7 @@ export PATH="${iterm2_integration_path}/utilities${PATH+:$PATH}"
 
 export PATH="${XDG_CONFIG_HOME}/git${PATH+:$PATH}";
 
-# Specific to passwordless-history plugin
+# Specific to zsh-mask plugin
 export HISTORY_EXCLUDE_PATTERN="${HISTORY_EXCLUDE_PATTERN}|BW_SESSION[=:] *([^ ]+)|bw +unlock +([^ ]+)"
 
 # Specific to zsh-z plugin
@@ -271,6 +271,14 @@ export CONFIGURE_OPTS="--with-system-expat --with-openssl=${HOMEBREW_PREFIX}/opt
 
 # Specific to Ansible
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+
+# Specific to ruby
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+
+{{ if (eq .chezmoi.os "darwin") -}}
+# Specific to android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+{{- end }}
 
 # ----- Custom ----- #
 

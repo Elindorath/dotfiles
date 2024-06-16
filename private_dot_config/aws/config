@@ -6,3 +6,59 @@ output=json
 region=eu-west-3
 output=json
 credential_process = sh -c "op item get xxelxwvlvsuh3732efydywhnxm --fields label=aws_access_key_id,label=aws_secret_access_key --format=json  | jq 'map({ (.label):.value }) | add | { Version:1, AccessKeyId:.aws_access_key_id, SecretAccessKey:.aws_secret_access_key }'"
+
+[sso-session staycation]
+sso_start_url = https://staycation.awsapps.com/start
+sso_region = eu-west-3
+sso_registration_scopes = sso:account:access
+
+[profile staging-admin]
+sso_session = staycation
+sso_account_id = 767397940909
+sso_role_name = Admin
+
+[profile staging-devops]
+sso_session = staycation
+sso_account_id = 767397940909
+sso_role_name = Devops
+
+[profile staging-read-only]
+sso_session = staycation
+sso_account_id = 767397940909
+sso_role_name = ReadOnly
+
+[profile production-admin]
+sso_session = staycation
+sso_account_id = 211125511543
+sso_role_name = Admin
+region = eu-west-3
+output = json
+
+[profile production-devops]
+sso_session = staycation
+sso_account_id = 211125511543
+sso_role_name = Devops
+
+[profile production-read-only]
+sso_session = staycation
+sso_account_id = 211125511543
+sso_role_name = ReadOnly
+
+[profile shared-admin]
+sso_session = staycation
+sso_account_id = 992382793360
+sso_role_name = Admin
+
+[profile shared-devops]
+sso_session = staycation
+sso_account_id = 992382793360
+sso_role_name = Devops
+
+[profile shared-read-only]
+sso_session = staycation
+sso_account_id = 992382793360
+sso_role_name = ReadOnly
+
+[profile main-staycation]
+region=eu-west-3
+output=json

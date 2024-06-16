@@ -18,49 +18,27 @@
   "files.eol": "\n",
   "workbench.commandPalette.preserveInput": true,
   "workbench.startupEditor": "none",
-  "workbench.fontAliasing": "auto",
-  "workbench.statusBar.feedback.visible": false,
   "breadcrumbs.enabled": true,
   "search.smartCase": true,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.shell.windows": "C\\Windows\\System32\\wsl.exe",
-  "eslint.alwaysShowStatus": true,
-  "eslint.packageManager": "yarn",
   "git.enableCommitSigning": true,
   "git.showPushSuccessNotification": true,
-  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "git.autofetch": true,
   "redhat.telemetry.enabled": false,
-  "terraform.indexing": {
-    "enabled": false,
-    "liveIndexing": true,
-    "delay": 500,
-    "exclude": [
-      ".terraform/**/*",
-      "**/.terraform/**/*"
-    ]
-  },
-  "terraform.languageServer": {
-    "external": true,
-    "args": [
-      "serve"
-    ]
-  },
   "files.associations": {
+    "*.json5": "json5",
     "*.json": "json",
     "*.tmpl": "go-template",
-    "*.yml": "ansible",
+    "*.yml": "github-actions-workflow",
     ".envrc": "dotenv",
     ".prettierignore": "gitignore"
   },
   "explorer.confirmDragAndDrop": false,
-  "polacode.backgroundColor": "#ffffff",
-  "polacode.transparentBackground": true,
-  "polacode.shadow": "rgba(0, 0, 0, 0.55) 0px 20px 34px",
   "eslint.workingDirectories": [
     {
       "mode": "auto"
@@ -81,19 +59,19 @@
   "shellcheck.customArgs": [
     "-x"
   ],
-  "polacode.target": "snippet",
   "go-template.languages": [
     "toml"
   ],
   "[python]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "editor.formatOnType": true
   },
   "xml.server.binary.trustedHashes": [
     "c64f9b53e9983e224748f43f6be8b32af18a85f6ec88d4b0c73799c286788758"
   ],
   "cSpell.userWords": [
     "chunkname",
-    "Dafuck",
+    "dafuck",
     "elindorath",
     "esmodule",
     "esnext",
@@ -109,18 +87,65 @@
     "signin",
     "signup",
     "staycation",
-    "Staycation",
+    "staycation",
     "staycations",
     "stylelint",
-    "Swipeable",
+    "swipeable",
     "tiktok",
     "twic",
     "unmock",
-    "Westphal"
+    "westphal"
   ],
   "gitlens.rebaseEditor.ordering": "asc",
-  "cSpell.language": "en,fr",
+  "cSpell.language": "en,fr,es",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "terraform.languageServer.enable": true,
+  "terraform.codelens.referenceCount": true,
+  "ansible.python.interpreterPath": "/Users/elindorath/.config/asdf/installs/python/3.10.5/bin/python",
+  "editor.fontFamily": "'Hack Nerd Font', Consolas, 'Courier New', monospace",
+  "editor.rulers": [
+    100
+  ],
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json5",
+    "json",
+    "jsonc"
+  ],
+  "eslint.problems.shortenToSingleLine": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json5",
+    "json",
+    "jsonc"
+  ],
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "[hcl]": {
+    "editor.defaultFormatter": "hashicorp.hcl"
+  },
+  "git.suggestSmartCommit": false
 }

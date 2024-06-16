@@ -10,7 +10,7 @@
 	editor = code --wait
 	# Hacky way of telling delta to display side-by-side diff when there is sufficient terminal width
 	pager = delta "$(if [ $(tput cols) -gt 160 ]; then echo '-s'; else echo '--pager=less'; fi)"
-	excludesfile = {{ .chezmoi.homeDir }}.gitignore_global
+	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
 	sshCommand = "ssh -F ${XDG_CONFIG_HOME}/ssh/config"
 
 [filter "lfs"]

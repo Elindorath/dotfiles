@@ -1,0 +1,130 @@
+#! /usr/bin/env zsh
+# shellcheck shell=bash
+
+program_name="${0}";
+
+op_item_name="GPG key";
+public_key_name=gpg-public.key;
+secret_key_name=gpg-secret.key;
+revocation_certificate_name=gpg-compromised-revocation-certificate.key;
+
+firstname="Joachim";
+lastname="Westphal";
+email="elindorath@gmail.com";
+expire_in="1y";
+
+uid="${firstname} ${lastname} <${email}>";
+
+arg1="${1}"
+
+if [ -n "${arg1}" ] && [ "${arg1}" != "--force" ]; then
+  echo "error: wrong argument";
+  echo "usage: generate-gpg-key [--force]"
+  exit 1;
+fi
+
+function forced() {
+    [ -n "${arg1}" ] && [ "${arg1}" = "--force" ];
+}
+
+function error() {
+    echo "error: ${1}";
+}
+
+function usage() {
+    echo "usage: ${program_name} [--force]"
+}
+
+function usage_error() {
+    error "${1}"
+    usage
+    exit 1;
+}
+
+FINGERPRINT=$(gpg --list-keys --with-colons --with-fingerprint "${uid}" | awk -F: '$1 == "fpr" {print $10;}' | awk "FNR <= 1");
+
+GNUPGHOME=$(mktemp -d);
+export GNUPGHOME;
+
+echo "${GNUPGHOME}";
+
+function upload_file() {
+  op item edit "${1}" "${2//./\\.}[file]=${3}";
+}
+
+if op item get "${op_item_name}" >/dev/null 2>&1; then
+    if forced; then
+        op item delete "${op_item_name}" --archive;
+    else
+        usage_error "the item 'GPG key' already exists in 1Password, use the '--force' option to recreate it";
+    fi
+
+    if [ -n "${FINGERPRINT}" ]; then
+        if forced; then
+            gpg --batch --yes \
+                --delete-secret-and-public-key \
+                "${FINGERPRINT}";
+        else
+            usage_error "a key with the uid '${uid}' already exists, use the '--force' option to recreate it";
+        fi
+    fi
+fi
+
+op item create --category="password" --title="${op_item_name}" --generate-password --tags "gpg";
+
+# Generate root key, act as a certificate.
+gpg --batch --pinentry-mode "loopback" --passphrase-fd 3 \
+    --quick-generate-key "${firstname} ${lastname} <${email}>" "ed25519" "cert" "${expire_in}" \
+    3< <(echo "{{ op://Personal/GPG key/password }}" | op inject);
+
+FINGERPRINT=$(gpg --list-keys --with-colons --with-fingerprint "${uid}" | awk -F: '$1 == "fpr" {print $10;}' | awk "FNR <= 1");
+KEY_GRIP=$(gpg --list-keys --with-colons --with-keygrip "${uid}" | awk -F: '$1 == "grp" {print $10;}' | awk "FNR <= 1");
+
+# Generate sub key to sign.
+gpg --batch --pinentry-mode "loopback" --passphrase-fd 3 \
+    --quick-add-key "${FINGERPRINT}" "ed25519" "sign" "${expire_in}" \
+    3< <(echo "{{ op://Personal/GPG key/password }}" | op inject);
+
+# Generate sub key to encrypt.
+gpg --batch --pinentry-mode "loopback" --passphrase-fd 3 \
+    --quick-add-key "${FINGERPRINT}" "cv25519" "encrypt" "${expire_in}" \
+    3< <(echo "{{ op://Personal/GPG key/password }}" | op inject);
+
+# Generate a revocation certificate.
+revocation_certificate=$(
+    gpg --pinentry-mode "loopback" --passphrase-fd 3 \
+        --command-file <(printf "y\n1\n\ny\n") \
+        --gen-revoke \
+        "${FINGERPRINT}" \
+        3< <(echo "{{ op://Personal/GPG key/password }}" | op inject)
+);
+
+# Exporting secret key.
+secret_key=$(
+    gpg --batch --pinentry-mode "loopback" --passphrase-fd 3 \
+        --export-secret-keys --armor \
+        "${FINGERPRINT}" \
+        3< <(echo "{{ op://Personal/GPG key/password }}" | op inject)
+);
+
+# Exporting public key.
+public_key=$(
+    gpg --batch --pinentry-mode "loopback" --passphrase-fd 3 \
+        --export --armor \
+        "${FINGERPRINT}" \
+        3< <(echo "{{ op://Personal/GPG key/password }}" | op inject)
+);
+
+# The =() syntax is a process substitution specific to zsh.
+# Zsh stores the process result in a temporary file and gives back its path.
+# As 1Password CLI needs a filepath, we use this as a way to not managed ourselves files containing the gpg exported keys.
+# shellcheck disable=SC1036,SC1088 # Errors point to a specific syntax of zsh (see: https://manpages.ubuntu.com/manpages/xenial/man1/zshexpn.1.html#process%20substitution).
+upload_file "${op_item_name}" "${revocation_certificate_name}" =(echo "${revocation_certificate}");
+upload_file "${op_item_name}" "${secret_key_name}" =(echo "${secret_key}");
+upload_file "${op_item_name}" "${public_key_name}" =(echo "${public_key}");
+
+op item edit "${op_item_name}" "keygrip[text]=${KEY_GRIP}"
+
+unset GNUPGHOME;
+
+exit 0;

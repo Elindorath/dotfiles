@@ -9,7 +9,9 @@ eval "$(/opt/local/bin/brew shellenv)"
 {{   end -}}
 {{ end -}}
 
+{{ if (eq .chezmoi.os "darwin") -}}
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+{{- end }}
 
 # Ensure path entries are deduplicated
 typeset -U path PATH

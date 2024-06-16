@@ -381,3 +381,57 @@ Required, should not be removed
 - [ ] `.expo/`
 - [ ] `.vscode/`
 - [ ] `.yarnrc`
+- [ ] `.wget-hsts`
+<!-- ##### WINDOWS ##### -->
+- [ ] Patch Solarized Dark theme
+- [ ] Install fonts: `choco install nerd-fonts-hack`
+<!-- ##### WSL ##### -->
+- [ ] Install wslu: `brew install wslu`
+- [ ] `brew install bzip2 libffi`
+- [ ] `sudo add-apt-repository ppa:wslutilities/wslu`
+- [ ] `sudo apt install --no-install-recommends wslu`
+<!-- Might not be required -->
+- [ ] `export LDFLAGS="-L${HOMEBREW_PREFIX}/lib -L/home/linuxbrew/.linuxbrew/opt/openssl@3/lib"`
+- [ ] `export CPPFLAGS="-I${HOMEBREW_PREFIX}/include -I/home/linuxbrew/.linuxbrew/opt/openssl@3/include"`
+
+```sh
+# Install the Ubuntu keyring
+sudo apt install gnome-keyring
+
+# Install 1Password desktop app for linux
+# Add the key for the 1Password apt repository
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+# Add the 1Password apt repository
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
+# Add the debsig-verify policy
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+# Install 1Password
+sudo apt update && sudo apt install 1password
+
+# Install 1Password cli for Ubuntu
+# Add the key for the 1Password apt repository (same as the desktop app)
+sudo -s \
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+# Add the 1Password apt repository (same as the desktop app)
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+tee /etc/apt/sources.list.d/1password.list
+# Add the debsig-verify policy (same as the desktop app)
+mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+# Install 1Password cli
+apt update && apt install 1password-cli
+
+# Install WSL Hello sudo
+wget http://github.com/nullpo-head/WSL-Hello-sudo/releases/latest/download/release.tar.gz
+tar xvf release.tar.gz
+cd release
+./install.sh
+```

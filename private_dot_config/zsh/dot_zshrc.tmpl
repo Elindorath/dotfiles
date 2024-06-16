@@ -7,6 +7,13 @@ fi
 
 DEFAULT_USER="$USER"
 
+{{ if (.wsl) -}}
+export PATH="{{ .win_home }}/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
+export WIN_HOME="{{ .win_home }}"
+{{- end }}
+
+export PATH="${XDG_CONFIG_HOME}/bin:$PATH"
+
 # ----- Oh My Zsh settings ----- #
 
 export ZSH="${XDG_CONFIG_HOME}/oh-my-zsh"
@@ -164,7 +171,7 @@ HISTORY_IGNORE="(clear|k)"
 HISTSIZE=1000000000
 # The number of commands to store in the history file
 SAVEHIST=1000000000
-LC_ALL="en_US.UTF-8"
+LANG="en_US.UTF-8"
 # The command to use for redirection of stdout (>) without command
 NULLCMD="cat"
 # The command to use for redirection of stdin (<) without command
@@ -253,6 +260,18 @@ fi
 # Specific to AWS
 export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 
+# Required for installing python
+export LDFLAGS="-L${HOMEBREW_PREFIX}/lib -L$(brew --prefix openssl@3)/lib -L$(brew --prefix tcl-tk)/lib"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
+export CFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
+export PATH="$(brew --prefix tcl-tk)/bin:$PATH"
+export PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"
+export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'"
+export CONFIGURE_OPTS="--with-system-expat --with-openssl=${HOMEBREW_PREFIX}/opt/openssl/ --with-ssl-default-suites=openssl"
+
+# Specific to Ansible
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+
 # ----- Custom ----- #
 
 
@@ -310,8 +329,10 @@ alias ll="exa --icons --long --group --header"
 alias tree="exa --tree"
 alias treee="exa --tree --icons --all --level 1 --classify"
 
+{{ if (eq .chezmoi.os "darwin") -}}
 # Required by pinentry-touchid
 alias pinentry="pinentry-mac"
+{{- end }}
 
 # Ensure path entries are deduplicated
 typeset -U path PATH

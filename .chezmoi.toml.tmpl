@@ -22,7 +22,8 @@
 [data]
   wsl = {{ $wsl }}
   win_home = {{ $win_home | quote }}
-  xdg_bin_home = "{{ .chezmoi.homeDir }}/.local/bin"
+  win_home_relative = {{ clean (print (repeat (int (sub (len (splitList "/" .chezmoi.homeDir)) 1)) "../") $win_home) | quote }}
+  xdg_bin_home = ".local/bin"
   homebrew_prefix = "{{ $homebrew_prefix }}"
 
 {{ if (eq .chezmoi.os "darwin") -}}

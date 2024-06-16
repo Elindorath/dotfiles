@@ -1,9 +1,14 @@
 {{ if (ne .chezmoi.os "darwin") -}}
-Library/Application Support/Code/User/settings.json
-{{ end -}}
+Library
+{{- end }}
 {{ if (ne .chezmoi.os "linux") -}}
+.hushlogin
 .config/Code/User/settings.json
-{{ end -}}
+.config/Code/User/keybindings.json
+{{- end }}
+{{ if not (.wsl) -}}
+.config/bin/op
+{{- end }}
 .config/ssh/_known_hosts
 vscode
 iterm2

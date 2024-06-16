@@ -1,1 +1,3 @@
-{{ output "wslpath" (output "wslvar" "ChocolateyInstall" | trim) | trim }}/bin/op.exe
+{{- if (.wsl) -}}
+  {{ output "wslpath" (output "wslvar" "ChocolateyInstall" | trim) | trim }}/bin/op.exe
+{{- end }}

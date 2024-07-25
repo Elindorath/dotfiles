@@ -111,6 +111,24 @@
 
 
 
+# ----- Prompt ----- #
+
+[".local/bin/oh-my-posh"]
+  type = "file"
+  url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"
+  executable = true
+  refreshPeriod = "168h"
+# This path is the result of the command `oh-my-posh cache path`
+# [".cache/oh-my-posh"]
+#   type = "archive"
+#   url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip"
+#   exact = true
+#   refreshPeriod = "168h"
+
+# ----- Prompt ----- #
+
+
+
 # ----- Vim ----- #
 
 [".config/vim/pack/plugins/start/vim-airline"]
@@ -157,7 +175,7 @@
 
 # ----- WSL specific ----- #
 
-{{- if (.wsl) }}
+{{ if (.wsl) -}}
 ["{{ .xdg_bin_home }}/wsl-open.sh"]
  type = "file"
  url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
@@ -170,14 +188,31 @@
 
 # ----- Fonts for shell ----- #
 
-# {{- $fontDir := "" }}
-# {{- if (.wsl) }}
-# {{-   $fontDir = print .win_home_relative "/AppData/Local/Microsoft/Windows/Fonts" | trim }}
-# {{- else if (eq .chezmoi.os "darwin") }}
-# {{-   $fontDir = "Library/Fonts" }}
-# {{- else if (eq .chezmoi.os "linux") }}
-# {{-   $fontDir = ".local/share/fonts" }}
-# {{- end }}
+# TODO: Use this archive to install fonts
+# https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
+
+# TODO: Configure the Windows Terminal settings at this path
+# C:\Users\Elindorath\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+
+# TODO: Configure the VScode terminal settings with this
+# "terminal.integrated.fontFamily": "MesloLGM Nerd Font"
+
+{{- $fontDir := "" }}
+{{- if (.wsl) }}
+{{-   $fontDir = print .win_system_relative "/Fonts" | trim }}
+{{- else if (eq .chezmoi.os "darwin") }}
+{{-   $fontDir = "Library/Fonts" }}
+{{- else if (eq .chezmoi.os "linux") }}
+{{-   $fontDir = ".local/share/fonts" }}
+{{- end }}
+
+["{{ $fontDir }}"]
+  type = "archive"
+  url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz"
+  exact = true
+  refreshPeriod = "168h"
+  include = ["*.ttf"]
+
 # ["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
 # ["../../mnt/c/MesloLGS NF Regular.ttf"]
 #    type = "file"

@@ -1,18 +1,16 @@
 #! /usr/bin/env zsh
 # shellcheck shell=bash
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 DEFAULT_USER="$USER"
 
 {{ if (.wsl) -}}
-export PATH="{{ .win_home }}/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
+export PATH="{{ .win_home }}/AppData/Local/Programs/Microsoft VS Code/bin:${PATH+:${PATH}}"
 export WIN_HOME="{{ .win_home }}"
 {{- end }}
 
-export PATH="${XDG_CONFIG_HOME}/bin:$PATH"
+export PATH="${XDG_BIN_HOME}:${XDG_CONFIG_HOME}/bin:${PATH+:${PATH}}"
+
+eval "$(oh-my-posh init zsh)"
 
 # ----- Oh My Zsh settings ----- #
 
@@ -210,10 +208,10 @@ iterm2_integration_path="${XDG_CONFIG_HOME}/iterm2/integration"
 
 [ -e "${iterm2_integration_path}/shell_integration/zsh" ] && source "${iterm2_integration_path}/shell_integration/zsh"
 
-export PATH="${iterm2_integration_path}/utilities${PATH+:$PATH}"
+export PATH="${iterm2_integration_path}/utilities${PATH+:${PATH}}"
 {{- end }}
 
-export PATH="${XDG_CONFIG_HOME}/git${PATH+:$PATH}";
+export PATH="${XDG_CONFIG_HOME}/git${PATH+:${PATH}}";
 
 # Specific to zsh-mask plugin
 export HISTORY_EXCLUDE_PATTERN="${HISTORY_EXCLUDE_PATTERN}|BW_SESSION[=:] *([^ ]+)|bw +unlock +([^ ]+)"
@@ -264,7 +262,7 @@ export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 export LDFLAGS="-L${HOMEBREW_PREFIX}/lib -L$(brew --prefix openssl@3)/lib -L$(brew --prefix tcl-tk)/lib"
 export CPPFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
 export CFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
-export PATH="$(brew --prefix tcl-tk)/bin:$PATH"
+export PATH="$(brew --prefix tcl-tk)/bin:${PATH+:${PATH}}"
 export PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"
 export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'"
 export CONFIGURE_OPTS="--with-system-expat --with-openssl=${HOMEBREW_PREFIX}/opt/openssl/ --with-ssl-default-suites=openssl"
@@ -346,11 +344,3 @@ alias pinentry="pinentry-mac"
 typeset -U path PATH
 
 # ----- Aliases ----- #
-
-
-
-# ----- Prompt ----- #
-
-[[ ! -f "${XDG_CONFIG_HOME}/p10k/p10k.zsh" ]] || source "${XDG_CONFIG_HOME}/p10k/p10k.zsh"
-
-# ----- Prompt ----- #

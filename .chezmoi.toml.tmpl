@@ -1,12 +1,16 @@
 {{- $wsl := false -}}
 {{- $win_user_profile := "" -}}
 {{- $win_home := "" -}}
+{{- $win_system_root := "" -}}
+{{- $win_system := "" -}}
 {{- $homebrew_prefix := "" -}}
 
 {{- if (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
 {{-   $wsl = true -}}
 {{-   $win_user_profile = output "wslvar" "USERPROFILE" | trim -}}
 {{-   $win_home = output "wslpath" $win_user_profile  | trim -}}
+{{-   $win_system_root = output "wslvar" "SYSTEMROOT" | trim -}}
+{{-   $win_system = output "wslpath" $win_system_root | trim -}}
 {{- end -}}
 
 {{- if (eq .chezmoi.os "linux") -}}
@@ -22,7 +26,9 @@
 [data]
   wsl = {{ $wsl }}
   win_home = {{ $win_home | quote }}
-  win_home_relative = {{ clean (print (repeat (int (sub (len (splitList "/" .chezmoi.homeDir)) 1)) "../") $win_home) | quote }}
+  win_home_relative = {{ clean (print (repeat (int (sub (len (splitList "/" .chezmoi.sourceDir)) 1)) "../") $win_home) | quote }}
+  win_system = {{ $win_system | quote }}
+  win_system_relative = {{ clean (print (repeat (int (sub (len (splitList "/" .chezmoi.sourceDir)) 1)) "../") $win_system) | quote }}
   xdg_bin_home = ".local/bin"
   homebrew_prefix = "{{ $homebrew_prefix }}"
 

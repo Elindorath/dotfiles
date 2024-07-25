@@ -1,0 +1,89 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+pwd: "{{- if eq .OS \"windows\" -}}osc99{{- else -}}osc7{{- end -}}"
+shell_integration: true
+enable_cursor_positioning: true
+iterm_features:
+  - "prompt_mark"
+  - "current_dir"
+  - "remote_host"
+version: 2
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: path
+        style: diamond
+        trailing_diamond: 
+        template: " \uf07c {{ .Path }} "
+        foreground: "white"
+        background: "blue"
+        properties:
+          style: powerlevel
+      - type: git
+        style: diamond
+        trailing_diamond: 
+        foreground: "black"
+        background: "green"
+        background_templates:
+          # - "{{ if or (.Working.Changed) (.Staging.Changed) }}#c4a000{{ end }}"
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}yellow{{ end }}"
+          # - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}red{{ end }}"
+          # - "{{ if gt .Ahead 0 }}#89d1dc{{ end }}"
+          - "{{ if gt .Ahead 0 }}blue{{ end }}"
+          # - "{{ if gt .Behind 0 }}#4e9a06{{ end }}"
+          - "{{ if gt .Behind 0 }}green{{ end }}"
+        # template: "
+        #   {{ .UpstreamIcon }}
+        #   {{ .HEAD }}
+        #   {{ .Ref }}
+        #   {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}
+        #   {{ if .Working.Changed }}  {{ .Working.String }}{{ end }}
+        #   {{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}
+        #   {{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}
+        #   {{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+        # template: "
+        #   {{ .UpstreamIcon }}
+        #   Head: {{ .HEAD }}
+        #   Ref: {{ .Ref }}
+        #   Commit: {{ .Commit }}"
+        properties:
+          fetch_status: true
+          fetch_stash_count: true
+          fetch_worktree_count: true
+          fetch_upstream_icon: true
+          fetch_bare_info: true
+          branch_icon: 󰘬
+          branch_identical_icon: ≡
+          branch_ahead_icon: ↑
+          branch_behind_icon: ↓
+          branch_gone_icon: ≢
+          commit_icon: 
+          tag_icon: 
+          rebase_icon: 
+          cherry_pick_icon: 
+          revert_icon: 
+          merge_icon: 
+          no_commits_icon: 󰂕
+          github_icon: 
+          gitlab_icon: 
+          bitbucket_icon: 
+          azure_devops_icon: 
+          codecommit_icon: 
+          codeberg_icon: 
+          git_icon: 
+          branch_max_length: 0
+          fetch_user: true
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: status
+        style: plain
+        template: "\u276f"
+        properties:
+          always_enabled: true
+        foreground: green
+        foreground_templates:
+          - "{{ if gt .Code 0 }}red{{ end }}"

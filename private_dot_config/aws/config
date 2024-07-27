@@ -22,7 +22,7 @@ sso_session = staycation
 sso_account_id = 767397940909
 sso_role_name = Devops
 
-[profile staging-read-only]
+[profile staging-readonly]
 sso_session = staycation
 sso_account_id = 767397940909
 sso_role_name = ReadOnly
@@ -39,7 +39,7 @@ sso_session = staycation
 sso_account_id = 211125511543
 sso_role_name = Devops
 
-[profile production-read-only]
+[profile production-readonly]
 sso_session = staycation
 sso_account_id = 211125511543
 sso_role_name = ReadOnly
@@ -54,7 +54,7 @@ sso_session = staycation
 sso_account_id = 992382793360
 sso_role_name = Devops
 
-[profile shared-read-only]
+[profile shared-readonly]
 sso_session = staycation
 sso_account_id = 992382793360
 sso_role_name = ReadOnly

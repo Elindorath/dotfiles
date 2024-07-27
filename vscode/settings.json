@@ -34,7 +34,7 @@
     "*.json5": "json5",
     "*.json": "json",
     "*.tmpl": "go-template",
-    "*.yml": "github-actions-workflow",
+    "*.yml": "yaml",
     ".envrc": "dotenv",
     ".prettierignore": "gitignore"
   },

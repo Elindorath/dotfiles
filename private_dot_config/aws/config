@@ -59,6 +59,11 @@ sso_session = staycation
 sso_account_id = 992382793360
 sso_role_name = ReadOnly
 
+[profile old-admin]
+sso_session = staycation
+sso_account_id = 669666305049
+sso_role_name = Admin
+
 [profile main-staycation]
 region=eu-west-3
 output=json

@@ -147,5 +147,7 @@
   "[hcl]": {
     "editor.defaultFormatter": "hashicorp.hcl"
   },
-  "git.suggestSmartCommit": false
+  "git.suggestSmartCommit": false,
+  "githubPullRequests.pullBranch": "never",
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false
 }

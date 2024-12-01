@@ -8,14 +8,6 @@
   stripComponents = 1
   refreshPeriod = "168h"
   exclude = ["*/.github/**", "**/*.md"]
-[".config/oh-my-zsh/custom/themes/powerlevel10k"]
-  type = "archive"
-  url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
-  # Allow changes for *.zsh.zwc
-  exact = false
-  stripComponents = 1
-  refreshPeriod = "168h"
-  exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/clipboard"]
   type = "archive"
   url = "https://github.com/zpm-zsh/clipboard/archive/master.tar.gz"
@@ -199,19 +191,21 @@
 
 {{- $fontDir := "" }}
 {{- if (.wsl) }}
-{{-   $fontDir = print .win_system_relative "/Fonts" | trim }}
+{{-   $fontDir = "" }}
 {{- else if (eq .chezmoi.os "darwin") }}
 {{-   $fontDir = "Library/Fonts" }}
 {{- else if (eq .chezmoi.os "linux") }}
 {{-   $fontDir = ".local/share/fonts" }}
 {{- end }}
 
+{{- if ($fontDir) }}
 ["{{ $fontDir }}"]
   type = "archive"
   url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz"
   exact = true
   refreshPeriod = "168h"
   include = ["*.ttf"]
+{{- end }}
 
 # ["{{ $fontDir }}/MesloLGS NF Regular.ttf"]
 # ["../../mnt/c/MesloLGS NF Regular.ttf"]

@@ -10,13 +10,11 @@ export WIN_HOME="{{ .win_home }}"
 
 export PATH="${XDG_BIN_HOME}:${XDG_CONFIG_HOME}/bin:${PATH+:${PATH}}"
 
-eval "$(oh-my-posh init zsh)"
+eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME}/oh-my-posh/elindorath.omp.yml)"
 
 # ----- Oh My Zsh settings ----- #
 
 export ZSH="${XDG_CONFIG_HOME}/oh-my-zsh"
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   asdf

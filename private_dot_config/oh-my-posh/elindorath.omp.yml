@@ -7,7 +7,20 @@ iterm_features:
   - "prompt_mark"
   - "current_dir"
   - "remote_host"
-version: 2
+version: 3
+palette:
+  orange: "#d56500"
+  violet: "#7d80d1"
+  lightOrange: "#e77422"
+  lightViolet: "#8b8fe1"
+transient_prompt:
+  template: "{{ .PWD }} <{{ if gt .Code 0 }}red{{ end }}>\u276f</> "
+  background: transparent
+  foreground: default
+secondary_prompt:
+  template: " \u279c <black,parentBackground> </>"
+  background: black
+  foreground: default
 blocks:
   - type: prompt
     alignment: left
@@ -16,7 +29,7 @@ blocks:
         style: diamond
         trailing_diamond: 
         template: " \uf07c {{ .Path }} "
-        foreground: "white"
+        foreground: lightWhite
         background: "blue"
         properties:
           style: powerlevel
@@ -26,28 +39,18 @@ blocks:
         foreground: "black"
         background: "green"
         background_templates:
-          # - "{{ if or (.Working.Changed) (.Staging.Changed) }}#c4a000{{ end }}"
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}yellow{{ end }}"
-          # - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}"
           - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}red{{ end }}"
-          # - "{{ if gt .Ahead 0 }}#89d1dc{{ end }}"
           - "{{ if gt .Ahead 0 }}blue{{ end }}"
-          # - "{{ if gt .Behind 0 }}#4e9a06{{ end }}"
           - "{{ if gt .Behind 0 }}green{{ end }}"
-        # template: "
-        #   {{ .UpstreamIcon }}
-        #   {{ .HEAD }}
-        #   {{ .Ref }}
-        #   {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}
-        #   {{ if .Working.Changed }}  {{ .Working.String }}{{ end }}
-        #   {{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}
-        #   {{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}
-        #   {{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
-        # template: "
-        #   {{ .UpstreamIcon }}
-        #   Head: {{ .HEAD }}
-        #   Ref: {{ .Ref }}
-        #   Commit: {{ .Commit }}"
+        template: "
+          {{ .UpstreamIcon }}
+          {{ .HEAD -}}
+          {{ if .BranchStatus }} {{ .BranchStatus }}{{ end -}}
+          {{ if .Working.Changed }}  {{ .Working.String }}{{ end -}}
+          {{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end -}}
+          {{ if .Staging.Changed }}  {{ .Staging.String }}{{ end -}}
+          {{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
         properties:
           fetch_status: true
           fetch_stash_count: true
@@ -75,6 +78,43 @@ blocks:
           git_icon: 
           branch_max_length: 0
           fetch_user: true
+  - type: prompt
+    alignment: right
+    segments:
+      - type: status
+        style: diamond
+        leading_diamond: 
+        background: red
+        foreground: lightWhite
+        properties:
+          always_enabled: false
+          status_template: "{{ .Code }}"
+          status_separator: "|"
+      - type: executiontime
+        style: diamond
+        leading_diamond: 
+        foreground: black
+        background: p:violet
+        template: "  {{ .FormattedMs }} "
+        properties:
+          threshold: 500
+          style: roundrock
+          always_enabled: true
+      - type: node
+        style: diamond
+        leading_diamond: 
+        foreground: black
+        background: "#6CA35E"
+        template: "\ued0d {{ .Full }} {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}"
+        properties:
+          missing_command_text: Missing
+          fetch_package_manager: true
+      - type: time
+        style: diamond
+        leading_diamond: 
+        background: black
+        properties:
+          time_format: 15:04:05
   - type: prompt
     alignment: left
     newline: true

@@ -128,7 +128,9 @@ fpath+="$(brew --prefix)/share/zsh/site-functions"
 
 # Specific to the ssh-agent plugin
 zstyle :omz:plugins:ssh-agent identities ${XDG_CONFIG_HOME}/ssh/{id_rsa,github_ed25519,gitlab_rsa}
+{{- if (eq .chezmoi.os "darwin") }}
 zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain
+{{- end }}
 zstyle :omz:plugins:ssh-agent quiet yes
 
 # shellcheck source=/home/elindorath/.oh-my-zsh/oh-my-zsh.sh

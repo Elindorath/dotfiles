@@ -382,6 +382,7 @@ Required, should not be removed
 - [ ] `.vscode/`
 - [ ] `.yarnrc`
 - [ ] `.wget-hsts`
+- [ ] Make a proper color scheme in OKLab colorspace, inspired from Selenium and OKSolar (see the ["Color schemes" section](#color-schemes-wip))
 <!-- ##### WINDOWS ##### -->
 - [ ] Patch Solarized Dark theme
 - [ ] Install fonts: `choco install nerd-fonts-hack`
@@ -434,4 +435,76 @@ wget http://github.com/nullpo-head/WSL-Hello-sudo/releases/latest/download/relea
 tar xvf release.tar.gz
 cd release
 ./install.sh
+```
+
+## Color schemes (WIP)
+
+```plain
+// OKSOLAR REWORKED
+
+// bg_0
+base03     #002d38
+// bg_1
+base02     #093946
+// bg_2
+           #244d59
+// dim_0   oklch(53.5% 0.017 219.6)
+           #637074
+// fg_0    oklch(72.5% 0.017 219.6)
+           #9ba9ad
+// fg_1    oklch(82.5% 0.017 219.6)
+           #bac9cd
+base01     #5b7279
+base00     #657377
+base0      #98a8a8
+base1      #8faaab
+base2      #f1e9d2
+base3      #fbf7ef
+
+red        #f23749
+green      #819500
+yellow     #ac8300
+blue       #2b90d8
+magenta    #dd459d
+cyan       #259d94
+orange     #d56500
+violet     #7d80d1
+
+br_red     #ff4a58
+br_green   #90a423
+br_yellow  #bb9223
+br_blue    #3ea0e9
+br_magenta #ef56ac
+br_cyan    #3aada3
+br_orange  #e77422
+br_violet  #8b8fe1
+
+
+
+// SELENIUM DARK
+
+bg_0         #103c48
+bg_1         #184956
+bg_2         #2d5b69
+dim_0        #72898f
+fg_0         #adbcbc
+fg_1         #cad8d9
+
+red          #fa5750
+green        #75b938
+yellow       #dbb32d
+blue         #4695f7
+magenta      #f275be
+cyan         #41c7b9
+orange       #ed8649
+violet       #af88eb
+
+br_red       #ff665c
+br_green     #84c747
+br_yellow    #ebc13d
+br_blue      #58a3ff
+br_magenta   #ff84cd
+br_cyan      #53d6c7
+br_orange    #fd9456
+br_violet    #bd96fa
 ```

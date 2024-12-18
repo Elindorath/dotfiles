@@ -107,7 +107,11 @@
 
 [".local/bin/oh-my-posh"]
   type = "file"
+{{- if (eq .chezmoi.os "darwin") }}
+  url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-darwin-arm64"
+{{- else }}
   url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"
+{{- end }}
   executable = true
   refreshPeriod = "168h"
 # This path is the result of the command `oh-my-posh cache path`

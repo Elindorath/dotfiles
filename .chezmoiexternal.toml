@@ -42,7 +42,7 @@
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/pnpm/completions"]
   type = "file"
-  url = "https://raw.githubusercontent.com/baliestri/pnpm.plugin.zsh/main/_pnpm"
+  url = "https://raw.githubusercontent.com/empresslabs/pnpm.plugin.zsh/main/completions/_pnpm"
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/solarized-man/solarized-man.plugin.zsh"]
   type = "file"

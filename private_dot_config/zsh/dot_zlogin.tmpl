@@ -10,8 +10,15 @@ eval "$(/opt/local/bin/brew shellenv)"
 {{ end -}}
 
 {{ if (eq .chezmoi.os "darwin") -}}
-export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+path=("/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $path)
 {{- end }}
 
-# Ensure path entries are deduplicated
-typeset -U path PATH
+{{ if (gt (len (env "OP_SERVICE_ACCOUNT_TOKEN")) 0) -}}
+export OP_SERVICE_ACCOUNT_TOKEN="{{- env "OP_SERVICE_ACCOUNT_TOKEN" -}}"
+{{   if (.wsl) -}}
+export WSLENV="OP_SERVICE_ACCOUNT_TOKEN/w:${WSLENV}"
+{{   end -}}
+{{ end -}}
+
+# Tied path to the PATH variable, ensure path entries are deduplicated and export `PATH`
+typeset -TUx PATH path

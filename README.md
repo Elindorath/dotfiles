@@ -129,18 +129,6 @@ Required, should not be removed
 
 <details>
   <summary>
-    <b>.envrc</b>
-    <i></i>
-  </summary>
-
-Used automatically by `direnv` when navigating with zsh to use asdf and exporting environment
-
-Required, should not be removed
-
-</details>
-
-<details>
-  <summary>
     <b>.expo/</b>
     <i></i>
   </summary>
@@ -174,18 +162,6 @@ Stores the `react-native-debugger` global configuration
 Doesn't seem to be configurable.
 
 Consider making a PR to change [this](https://github.com/jhen0409/react-native-debugger/blob/a3963ac60f22958005e6ed41721eeeffffb35d91/electron/config/index.js#L7:L10)
-
-</details>
-
-<details>
-  <summary>
-    <b>.tool-versions</b>
-    <i></i>
-  </summary>
-
-Used automatically by `asdf` when navigating with zsh to exposed the configured tool version binaries
-
-Required, should not be removed
 
 </details>
 

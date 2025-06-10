@@ -39,5 +39,5 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 source "${ZDOTDIR}/.zshenv"
 
-# Ensure path entries are deduplicated
-typeset -U path PATH
+# Tied path to the PATH variable, ensure path entries are deduplicated and export `PATH`
+typeset -TUx PATH path

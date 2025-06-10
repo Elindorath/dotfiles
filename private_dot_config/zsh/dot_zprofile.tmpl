@@ -5,8 +5,9 @@
 # This utility doesn't preserve `PATH` and `MANPATH` order
 # This behavior prevents us to customize the both variables in `.zshenv`
 # See `dotfiles/dot_zshenv.tmpl` for configuration files loading
-export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+path=("${HOMEBREW_PREFIX}/bin" $path)
+path=("${HOMEBREW_PREFIX}/sbin" $path)
 export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
 
-# Ensure path entries are deduplicated
-typeset -U path PATH
+# Tied path to the PATH variable, ensure path entries are deduplicated and export `PATH`
+typeset -TUx PATH path

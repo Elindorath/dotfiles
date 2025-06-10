@@ -108,7 +108,7 @@
   },
   "terraform.languageServer.enable": true,
   "terraform.codelens.referenceCount": true,
-  "ansible.python.interpreterPath": "/Users/elindorath/.config/asdf/installs/python/3.10.5/bin/python",
+  "ansible.python.interpreterPath": "/Users/elindorath/.local/share/mise/installs/python/3.13.4/bin/python",
   "editor.fontFamily": "'Hack Nerd Font', Consolas, 'Courier New', monospace",
   "editor.rulers": [
     100

@@ -59,6 +59,21 @@ sso_session = staycation
 sso_account_id = 992382793360
 sso_role_name = ReadOnly
 
+[profile sandbox-admin]
+sso_session = staycation
+sso_account_id = 471112807131
+sso_role_name = Admin
+
+[profile sandbox-devops]
+sso_session = staycation
+sso_account_id = 471112807131
+sso_role_name = Devops
+
+[profile sandbox-readonly]
+sso_session = staycation
+sso_account_id = 471112807131
+sso_role_name = ReadOnly
+
 [profile old-admin]
 sso_session = staycation
 sso_account_id = 669666305049

@@ -11,7 +11,7 @@ eval "$(/opt/local/bin/brew shellenv)"
 
 {{ if (eq .chezmoi.os "darwin") -}}
 path=("/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $path)
-{{- end }}
+{{ end -}}
 
 {{ if (gt (len (env "OP_SERVICE_ACCOUNT_TOKEN")) 0) -}}
 export OP_SERVICE_ACCOUNT_TOKEN="{{- env "OP_SERVICE_ACCOUNT_TOKEN" -}}"

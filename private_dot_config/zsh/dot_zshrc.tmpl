@@ -236,6 +236,8 @@ export NODE_REPL_HISTORY="${XDG_STATE_HOME}/node/repl_history"
 # Specific to npm
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 # Specific to node-gyp
+# Will stop working in the next npm version
+# See: https://github.com/nodejs/node-gyp/issues/3156
 export NPM_CONFIG_DEVDIR="${XDG_CACHE_HOME}/node-gyp"
 
 # Specific to vim

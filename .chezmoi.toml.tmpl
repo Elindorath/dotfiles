@@ -4,6 +4,7 @@
 {{- $win_system_root := "" -}}
 {{- $win_system := "" -}}
 {{- $homebrew_prefix := "" -}}
+{{- $editor_command := "" -}}
 
 {{- if (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
 {{-   $wsl = true -}}
@@ -23,6 +24,12 @@
 {{-   end -}}
 {{- end -}}
 
+{{- if lookPath "cursor" -}}
+{{-   $editor_command = "cursor" -}}
+{{- else -}}
+{{-   $editor_command = "code" -}}
+{{- end -}}
+
 [data]
   wsl = {{ $wsl }}
   win_home = {{ $win_home | quote }}
@@ -31,6 +38,7 @@
   win_system_relative = {{ clean (print (repeat (int (sub (len (splitList "/" .chezmoi.sourceDir)) 1)) "../") $win_system) | quote }}
   xdg_bin_home = ".local/bin"
   homebrew_prefix = "{{ $homebrew_prefix }}"
+  editor_command = "{{ $editor_command }}"
 
 {{ if (eq .chezmoi.os "darwin") -}}
 [[textconv]]

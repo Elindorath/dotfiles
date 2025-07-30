@@ -6,10 +6,10 @@ export LANG="en_US.UTF-8"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
 else
-  export EDITOR="code --wait"
+  export EDITOR="{{ .editor_command }} --wait"
 fi
 
-export VISUAL="code --wait"
+export VISUAL="{{ .editor_command }} --wait"
 
 # Brew
 export HOMEBREW_GITHUB_API_TOKEN={{ (onepasswordRead "op://chezmoi/github/HOMEBREW_GITHUB_API_TOKEN") }}

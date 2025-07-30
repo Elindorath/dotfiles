@@ -7,7 +7,7 @@
 	default = simple
 
 [core]
-	editor = code --wait
+	editor = {{ .editor_command }} --wait
 	# Hacky way of telling delta to display side-by-side diff when there is sufficient terminal width
 	pager = delta "$(if [ $(tput cols) -gt 160 ]; then echo '-s'; else echo '--pager=less'; fi)"
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
@@ -29,7 +29,7 @@
 	tool = default-difftool
 
 [difftool "default-difftool"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = {{ .editor_command }} --wait --diff $LOCAL $REMOTE
 
 [gpg]
 	program = {{ .homebrew_prefix }}/bin/gpg

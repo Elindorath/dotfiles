@@ -309,12 +309,14 @@ alias -g Gi="| grep -i"
 alias dc="docker compose"
 
 # chezmoi aliases
-alias dot="code $(chezmoi source-path)"
+alias dot="{{ .editor_command }} $(chezmoi source-path)"
+alias dotg="chezmoi git --"
 alias dots="chezmoi git -- status"
 alias dotd="chezmoi git -- diff"
 alias dota="chezmoi git -- add"
 alias dotc="chezmoi git -- commit"
 alias dotp="chezmoi git -- push"
+alias dotpl="chezmoi git -- pull"
 
 # Specific to bat
 # Replace cat with bat

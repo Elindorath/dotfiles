@@ -1,6 +1,8 @@
 {
   "debug.javascript.defaultRuntimeExecutable": {
-    "pwa-node": "/home/Elindorath/.local/share/mise/shims/node"
+    "pwa-node": ".vscode/mise-tools/node"
   },
-  "python.defaultInterpreterPath": "/home/Elindorath/.local/share/mise/installs/python/3.13.4/bin/python"
+  "python.defaultInterpreterPath": ".vscode/mise-tools/python",
+  "mise.configureExtensionsUseSymLinks": true,
+  "mise.configureExtensionsUseShims": false
 }

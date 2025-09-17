@@ -52,6 +52,6 @@ args = ["-convert", "xml1", "-o", "-", "-"]
 
 [onepassword]
   mode = "service"
-{{ if (.wsl) -}}
+{{ if ($wsl) -}}
   command = "/mnt/c/ProgramData/chocolatey/bin/op.exe"
 {{- end }}

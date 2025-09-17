@@ -9,3 +9,4 @@ terraform-ls = "0.36.4"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
+default_config_filename = ".mise.toml"

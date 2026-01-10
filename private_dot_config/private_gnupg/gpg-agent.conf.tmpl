@@ -3,5 +3,5 @@
 # See: https://github.com/jorgelbg/pinentry-touchid/pull/6/files
 pinentry-program {{ .homebrew_prefix }}/bin/pinentry-touchid
 {{- else if (.wsl) -}}
-pinentry-program {{ .chezmoi.homeDir }}/dev/mine/pinentry-1password/main.js
+pinentry-program {{ .chezmoi.homeDir }}/.config/bin/pinentry-1password
 {{- end }}

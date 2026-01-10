@@ -53,5 +53,5 @@ args = ["-convert", "xml1", "-o", "-", "-"]
 [onepassword]
   mode = "service"
 {{ if ($wsl) -}}
-  command = "/mnt/c/ProgramData/chocolatey/bin/op.exe"
+  command = "{{ output "wslpath" (output "wslvar" "ChocolateyInstall" | trim) | trim }}/bin/op.exe"
 {{- end }}

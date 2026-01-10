@@ -20,5 +20,7 @@ export WSLENV="OP_SERVICE_ACCOUNT_TOKEN/w:${WSLENV}"
 {{   end -}}
 {{ end -}}
 
+export OP_PIN_ITEM="op://chezmoi/GPG key new/password"
+
 # Tied path to the PATH variable, ensure path entries are deduplicated and export `PATH`
 typeset -TUx PATH path

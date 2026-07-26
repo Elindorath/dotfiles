@@ -1,5 +1,11 @@
 # Keep a clean home
 
+## Setup
+
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Elindorath/dotfiles/main/install.sh)"
+```
+
 ## Dump of my current home (Mac)
 
 ```toml

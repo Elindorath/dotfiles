@@ -1534,9 +1534,9 @@
 	<key>PasteFromClipboard</key>
 	<false/>
 	<key>PasteSpecialRegex</key>
-	<string>\\  </string>
-	<key>PasteSpecialSubstitution</key>
 	<string></string>
+	<key>PasteSpecialSubstitution</key>
+	<string> </string>
 	<key>PasteSpecialUseRegexSubstitution</key>
 	<true/>
 	<key>PasteTabToStringTabStopSize</key>

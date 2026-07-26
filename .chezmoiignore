@@ -10,6 +10,6 @@ Library
 .config/bin/op
 {{- end }}
 .config/ssh/_known_hosts
-vscode
-iterm2
+install.sh
+playbook.sh
 README*

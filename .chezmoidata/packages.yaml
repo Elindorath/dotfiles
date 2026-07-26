@@ -1,0 +1,111 @@
+packages:
+  universal:
+    common:
+      brews:
+        - act
+        - bash
+        - bat
+        - chezmoi
+        - chroma
+        - curlb
+        - delta
+        - eza
+        - fd
+        - fzf
+        - gcc
+        - git
+        - hadolint
+        - htop
+        - jq
+        - mise
+        - openssl
+        - readline
+        - shellcheck
+        - sqlite3
+        - unzip
+        - vim
+        - xz
+        - zlib
+        - zsh
+        # - tar
+        # Node dependencies
+        - gawk
+        - gpg
+        # ripgrep-all dependencies
+        - ffmpeg
+        - pandoc
+        - ripgrep-all
+        # Ruby dependencies
+        # - openssl@1.1
+        # - readline
+      casks: []
+    darwin:
+      taps:
+        - jorgelbg/tap
+      brews:
+        - pinentry-mac
+        - pinentry-touchid
+        - duti
+        - mas
+        - dockutil
+      casks:
+        - 1password/tap/1password-cli
+        - anydesk
+        - bartender
+        - cleanmymac
+        - cursor
+        - daisydisk
+        - docker
+        - firefox
+        - font-hack-nerd-font
+        - google-chrome
+        # Since vlc doesn't support skins on OS X, I use Iina as a beautiful alternative
+        - iina
+        - insomnia
+        - istat-menus
+        - iterm2
+        - mysides
+        - notion
+        - postico
+        - qobuz
+        - raycast
+        - slack
+        - the-unarchiver
+        - visual-studio-code
+        - whatsapp
+  work:
+    common:
+      taps: []
+      brews: []
+      casks: []
+    darwin:
+      taps: []
+      brews: []
+      casks:
+        - granola
+        - linear-linear
+    linux:
+      taps: []
+      brews: []
+      casks: []
+  personal:
+    common:
+      taps: []
+      brews: []
+      casks: []
+    darwin:
+      taps: []
+      brews: []
+      casks: []
+    linux:
+      taps: []
+      brews: []
+      casks: []
+
+# TO DELETE:
+# - ansible-lint
+# - rbw
+# - poppler
+# - tesseract
+# - alfred
+# - rectangle

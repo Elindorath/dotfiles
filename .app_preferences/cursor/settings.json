@@ -1,0 +1,183 @@
+{
+  "window.closeWhenEmpty": true,
+  "editor.dragAndDrop": false,
+  "files.insertFinalNewline": true,
+  "editor.find.seedSearchStringFromSelection": true,
+  "editor.scrollBeyondLastLine": true,
+  "window.title": "${rootName}",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnPaste": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.renderLineHighlight": "all",
+  "editor.cursorBlinking": "smooth",
+  "editor.minimap.showSlider": "always",
+  "files.defaultLanguage": "javascript",
+  "files.trimFinalNewlines": true,
+  "files.eol": "\n",
+  "workbench.commandPalette.preserveInput": true,
+  "workbench.startupEditor": "none",
+  "breadcrumbs.enabled": true,
+  "search.smartCase": true,
+  "extensions.closeExtensionDetailsOnViewChange": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.scrollback": 10000,
+  "git.enableCommitSigning": true,
+  "git.showPushSuccessNotification": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "git.autofetch": true,
+  "redhat.telemetry.enabled": false,
+  "files.associations": {
+    "*.json5": "json5",
+    "*.json": "json",
+    "*.tmpl": "go-template",
+    "*.yml": "yaml",
+    ".envrc": "dotenv",
+    ".prettierignore": "gitignore"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "yaml.customTags": [
+    "!encrypted/pkcs1-oaep scalar",
+    "!vault scalar"
+  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "shellcheck.customArgs": [
+    "-x"
+  ],
+  "go-template.languages": [
+    "toml"
+  ],
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.formatOnType": true
+  },
+  "xml.server.binary.trustedHashes": [
+    "c64f9b53e9983e224748f43f6be8b32af18a85f6ec88d4b0c73799c286788758"
+  ],
+  "cSpell.userWords": [
+    "chunkname",
+    "dafuck",
+    "elindorath",
+    "esmodule",
+    "esnext",
+    "facebook",
+    "flowtype",
+    "forwardable",
+    "geolocation",
+    "linkedin",
+    "mapbox",
+    "nextjs",
+    "opentype",
+    "shopify",
+    "signin",
+    "signup",
+    "staycation",
+    "staycation",
+    "staycations",
+    "stylelint",
+    "swipeable",
+    "tiktok",
+    "twic",
+    "unmock",
+    "westphal"
+  ],
+  "gitlens.rebaseEditor.ordering": "asc",
+  "cSpell.language": "en-US,fr-FR,es-ES",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "files.watcherExclude": {
+    "**/.ammonite": true,
+    "**/.bloop/**": true,
+    "**/.metals/**/*.{java,scala}": true
+  },
+  "terraform.languageServer.enable": true,
+  "terraform.codelens.referenceCount": true,
+  "ansible.python.interpreterPath": "/Users/elindorath/.local/share/mise/installs/python/3.13.4/bin/python",
+  "editor.fontFamily": "'Hack Nerd Font', Consolas, 'Courier New', monospace",
+  "editor.rulers": [
+    100
+  ],
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json5",
+    "json",
+    "jsonc"
+  ],
+  "eslint.problems.shortenToSingleLine": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json5",
+    "json",
+    "jsonc"
+  ],
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "[hcl]": {
+    "editor.defaultFormatter": "hashicorp.hcl"
+  },
+  "git.suggestSmartCommit": false,
+  "githubPullRequests.pullBranch": "never",
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "react-native-tools.showUserTips": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "mise.binPath": "/opt/homebrew/bin/mise",
+  "docker.extension.enableComposeLanguageServer": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "cursor.cpp.enablePartialAccepts": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "window.autoDetectColorScheme": false,
+  "claudeCode.preferredLocation": "panel",
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ]
+}

@@ -1,8 +1,12 @@
 {
   "debug.javascript.defaultRuntimeExecutable": {
-    "pwa-node": ".vscode/mise-tools/node"
+    "pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
   },
-  "python.defaultInterpreterPath": ".vscode/mise-tools/python",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.vscode/mise-tools/python",
   "mise.configureExtensionsUseSymLinks": true,
-  "mise.configureExtensionsUseShims": false
+  "mise.configureExtensionsUseShims": false,
+  "cSpell.words": [
+    "chezmoi",
+    "osascript"
+  ]
 }

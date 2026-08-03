@@ -66,13 +66,16 @@
   stripComponents = 1
   refreshPeriod = "168h"
   exclude = ["*/.github/**", "**/*.md"]
-[".config/oh-my-zsh/custom/plugins/zsh-autosuggestions"]
-  type = "archive"
-  url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
-  exact = true
-  stripComponents = 1
+[".local/bin/deja"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "Giammarco-Ferranti/deja" (printf "deja_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+  path = "deja"
+  executable = true
   refreshPeriod = "168h"
-  exclude = ["*/.github/**", "**/*.md"]
+[".config/oh-my-zsh/custom/plugins/deja/deja.plugin.zsh"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/Giammarco-Ferranti/deja/main/deja.plugin.zsh"
+  refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/zsh-bitwarden"]
   type = "archive"
   url = "https://github.com/Game4Move78/zsh-bitwarden/archive/master.tar.gz"
@@ -107,11 +110,7 @@
 
 [".local/bin/oh-my-posh"]
   type = "file"
-{{- if (eq .chezmoi.os "darwin") }}
-  url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-darwin-arm64"
-{{- else }}
-  url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"
-{{- end }}
+  url = {{ gitHubLatestReleaseAssetURL "JanDeDobbeleer/oh-my-posh" (printf "posh-%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
   executable = true
   refreshPeriod = "168h"
 # This path is the result of the command `oh-my-posh cache path`

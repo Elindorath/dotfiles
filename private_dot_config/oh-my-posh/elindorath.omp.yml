@@ -3,10 +3,10 @@ final_space: true
 pwd: "{{- if eq .OS \"windows\" -}}osc99{{- else -}}osc7{{- end -}}"
 shell_integration: true
 enable_cursor_positioning: true
-iterm_features:
-  - "prompt_mark"
-  - "current_dir"
-  - "remote_host"
+# No `iterm_features` here: iTerm2's own shell integration is sourced from .zshrc and
+# already reports CurrentDir and RemoteHost. Note that `prompt_mark` is actively broken:
+# oh-my-posh emits a literal `$(iterm2_prompt_mark)`, relying on PROMPT_SUBST, which its
+# own zsh init disables ("to avoid unexpected expansions in a prompt string").
 version: 3
 palette:
   orange: "#d56500"

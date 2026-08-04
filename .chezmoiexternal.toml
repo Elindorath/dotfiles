@@ -58,11 +58,7 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-  exclude = ["*/.*", "*/LICENSE", "*/*Test*", "*/*test*", "**/*.md"]
-[".config/oh-my-zsh/custom/plugins/zsh-autocomplete/z-async/z-async"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/marlonrichert/z-async/main/z-async"
-  refreshPeriod = "168h"
+  exclude = ["*/.*", "**/LICENSE", "**/*Test*", "**/*test*", "**/*.md", "*/z-async/.*"]
 [".config/oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
   url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"

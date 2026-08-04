@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    ":semanticCommitsDisabled"
+  ],
+  "packageRules": [
+    {
+      "description": "One PR for all workflow action bumps: they are reviewed together and never conflict.",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Language runtimes and terraform stay separate: a major bump there needs its own review and its own revert.",
+      "matchManagers": ["mise"],
+      "separateMajorMinor": true,
+      "separateMultipleMajor": true
+    }
+  ]
+}

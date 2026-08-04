@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  shell:
+    name: Shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install zsh
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends zsh
+
+      - name: shellcheck (bash scripts)
+        run: |
+          status=0
+          while IFS= read -r file; do
+            echo "::group::${file}"
+            shellcheck "${file}" || status=1
+            echo "::endgroup::"
+          done < <(
+            find . -path ./.git -prune -o -type f ! -name '*.tmpl' -print0 |
+              xargs -0 grep -lE '^#!.*\bbash\b' | sort
+          )
+          exit "${status}"
+
+      - name: zsh -n (zsh scripts and plugins)
+        run: |
+          status=0
+          while IFS= read -r file; do
+            echo "::group::${file}"
+            zsh -n "${file}" || status=1
+            echo "::endgroup::"
+          done < <(
+            {
+              find . -path ./.git -prune -o -type f ! -name '*.tmpl' -print0 |
+                xargs -0 grep -lE '^#!.*\bzsh\b'
+              find . -path ./.git -prune -o -type f -name '*.zsh' ! -name '*.tmpl' -print
+            } | sort -u
+          )
+          exit "${status}"
+
+  chezmoi:
+    name: chezmoi source state
+    runs-on: ubuntu-latest
+    env:
+      # Required to not hit the unauthenticated rate limit when resolving .chezmoiexternal.toml.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install zsh
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends zsh
+
+      - name: Install chezmoi
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${HOME}/.local/bin"
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
+
+      - name: Cache chezmoi externals
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/chezmoi
+          key: chezmoi-externals-${{ hashFiles('.chezmoiexternal.toml') }}
+          restore-keys: chezmoi-externals-
+
+      - name: chezmoi init
+        run: chezmoi init --source="${PWD}"
+
+      # Resolves the whole source state: parses .chezmoiexternal.toml, evaluates
+      # .chezmoiignore, and checks every source entry has a valid name and
+      # attributes. This is what catches a malformed external or a typo in an
+      # attribute prefix.
+      - name: Validate source state, externals and ignore rules
+        run: |
+          chezmoi managed --source="${PWD}" > /tmp/managed.txt
+          printf 'source state resolves to %d managed entries\n' "$(wc -l < /tmp/managed.txt)"
+
+      - name: Render every template that needs no secret
+        run: |
+          status=0
+          while IFS= read -r file; do
+            if grep -qE 'onepassword(Read|ItemFields|DetailsFields|Document)' "${file}"; then
+              echo "skipped (needs 1Password): ${file}"
+              continue
+            fi
+            echo "::group::${file}"
+            if chezmoi execute-template --source="${PWD}" < "${file}" > /dev/null; then
+              echo "rendered"
+            else
+              status=1
+            fi
+            echo "::endgroup::"
+          done < <(find . -path ./.git -prune -o -type f -name '*.tmpl' -print | sort)
+          exit "${status}"
+
+      # A template can render fine and still produce broken shell. Check the
+      # syntax of the zsh files that are actually rendered.
+      - name: zsh -n on rendered zsh templates
+        run: |
+          status=0
+          for file in dot_zshenv.tmpl \
+                      private_dot_config/zsh/dot_zprofile.tmpl \
+                      private_dot_config/zsh/dot_zshrc.tmpl \
+                      private_dot_config/zsh/private_dot_zlogin.tmpl \
+                      private_dot_config/oh-my-zsh/custom/plugins/op/op.plugin.zsh.tmpl; do
+            echo "::group::${file}"
+            chezmoi execute-template --source="${PWD}" < "${file}" > /tmp/rendered.zsh
+            zsh -n /tmp/rendered.zsh || status=1
+            echo "::endgroup::"
+          done
+          exit "${status}"
+
+  markdown:
+    name: Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: markdownlint
+        run: npx --yes markdownlint-cli '**/*.md' --ignore node_modules

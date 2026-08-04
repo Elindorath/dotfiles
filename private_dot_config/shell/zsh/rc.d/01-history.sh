@@ -10,7 +10,6 @@ HISTFILE=${XDG_DATA_HOME:=~/.local/share}/zsh/history
 
 # Max number of entries to keep in history file.
 SAVEHIST=$(( 100 * 1000 ))      # Use multiplication for readability.
-1 000 000 000
 
 # Max number of history entries to keep in memory.
 HISTSIZE=$(( 1.2 * SAVEHIST ))  # Zsh recommended value

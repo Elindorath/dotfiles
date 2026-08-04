@@ -38,7 +38,7 @@ plugins=(
   # Not in oh-my-zsh: https://github.com/zdharma-continuum/fast-syntax-highlighting
   fast-syntax-highlighting
   git
-  gpg-agent
+  # Deliberately not the `gpg-agent` plugin: see GPG_TTY in the Custom section
   # Might be of interest
   # httpie
   # Not in oh-my-zsh: https://github.com/reegnz/jq-zsh-plugin
@@ -123,7 +123,7 @@ DISABLE_AUTO_UPDATE=true
 # See: https://github.com/zsh-users/zsh-completions/issues/603
 fpath+="${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src"
 
-fpath+="$(brew --prefix)/share/zsh/site-functions"
+fpath+="${HOMEBREW_PREFIX}/share/zsh/site-functions"
 
 # Specific to the ssh-agent plugin
 zstyle :omz:plugins:ssh-agent identities ${XDG_CONFIG_HOME}/ssh/{github_ed25519,gitlab_rsa,bastion_ed25519}
@@ -211,6 +211,11 @@ path=("${XDG_CONFIG_HOME}/git" $path)
 # Specific to zsh-mask plugin
 export HISTORY_EXCLUDE_PATTERN="${HISTORY_EXCLUDE_PATTERN}|BW_SESSION[=:] *([^ ]+)|bw +unlock +([^ ]+)"
 
+# Replaces the oh-my-zsh `gpg-agent` plugin. This plugin tests if we use ssh support from gpg.
+# As we use ssh-agent, we don't need to use gpg-agent for ssh.
+# The plugin also sets a hook that only matters for a TTY-based pinentry, which we don't use.
+export GPG_TTY=$TTY
+
 # Specific to zsh-z plugin
 export ZSHZ_DATA="${XDG_CONFIG_HOME}/z/database"
 export ZSHZ_TILDE=1
@@ -256,19 +261,19 @@ fi
 export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 
 # Required for installing python
-export LDFLAGS="-L${HOMEBREW_PREFIX}/lib -L$(brew --prefix openssl@3)/lib -L$(brew --prefix tcl-tk)/lib"
-export CPPFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
-export CFLAGS="-I${HOMEBREW_PREFIX}/include -I$(brew --prefix openssl@3)/include -I$(brew --prefix tcl-tk)/include -I$(brew --prefix tcl-tk)/include/tcl-tk"
-path=("$(brew --prefix tcl-tk)/bin" $path)
-export PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"
-export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/lib -L${HOMEBREW_PREFIX}/opt/openssl@3/lib -L${HOMEBREW_PREFIX}/opt/tcl-tk/lib"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/include -I${HOMEBREW_PREFIX}/opt/openssl@3/include -I${HOMEBREW_PREFIX}/opt/tcl-tk/include -I${HOMEBREW_PREFIX}/opt/tcl-tk/include/tcl-tk"
+export CFLAGS="-I${HOMEBREW_PREFIX}/include -I${HOMEBREW_PREFIX}/opt/openssl@3/include -I${HOMEBREW_PREFIX}/opt/tcl-tk/include -I${HOMEBREW_PREFIX}/opt/tcl-tk/include/tcl-tk"
+path=("${HOMEBREW_PREFIX}/opt/tcl-tk/bin" $path)
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/tcl-tk/lib/pkgconfig"
+export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I${HOMEBREW_PREFIX}/opt/tcl-tk/include' --with-tcltk-libs='-L${HOMEBREW_PREFIX}/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
 export CONFIGURE_OPTS="--with-system-expat --with-openssl=${HOMEBREW_PREFIX}/opt/openssl/ --with-ssl-default-suites=openssl"
 
 # Specific to Ansible
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 
 # Specific to ruby
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${HOMEBREW_PREFIX}/opt/openssl@3"
 
 {{ if (eq .chezmoi.os "darwin") -}}
 # Specific to android

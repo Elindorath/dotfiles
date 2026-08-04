@@ -1,5 +1,5 @@
 [tools]
-ansible = "12.0.0"
+ansible = "12.3.0"
 ansible-core = "2.19.2"
 aws-cli = "2.27.36"
 node = "24.18.0"

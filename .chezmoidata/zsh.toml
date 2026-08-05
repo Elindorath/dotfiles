@@ -67,11 +67,6 @@
   ]
 
 [[zsh.plugins]]
-  name = "fast-syntax-highlighting"
-  builtin = false
-  comments = ["Not in oh-my-zsh: https://github.com/zdharma-continuum/fast-syntax-highlighting"]
-
-[[zsh.plugins]]
   name = "git"
   builtin = false
   comments = ["Not in oh-my-zsh: https://github.com/davidde/git"]
@@ -172,11 +167,6 @@
   comments = ["Not in oh-my-zsh: https://github.com/MichaelAquilina/zsh-you-should-use"]
 
 [[zsh.plugins]]
-  name = "zsh-autocomplete"
-  builtin = false
-  comments = ["Not in oh-my-zsh: https://github.com/marlonrichert/zsh-autocomplete"]
-
-[[zsh.plugins]]
   name = "zsh-autopair"
   builtin = false
   comments = ["Not in oh-my-zsh: https://github.com/hlissner/zsh-autopair"]
@@ -209,3 +199,18 @@
   name = "zsh-z"
   builtin = false
   comments = ["Not in oh-my-zsh: https://github.com/agkozak/zsh-z"]
+
+# fast-syntax-highlighting wraps the ZLE widgets that exist when it loads, so it
+# must come after every plugin that defines widgets known to fast-syntax-highlighting.
+[[zsh.plugins]]
+  name = "fast-syntax-highlighting"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/zdharma-continuum/fast-syntax-highlighting"]
+
+# zsh-autocomplete needs to be kept after fast-syntax-highlighting:
+# it declares `menu-search` and `recent-paths` widgets, unknown to fast-syntax-highlighting,
+# causing `unhandled ZLE widget` on every startup if loaded before fast-syntax-highlighting.
+[[zsh.plugins]]
+  name = "zsh-autocomplete"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/marlonrichert/zsh-autocomplete"]

@@ -1,0 +1,211 @@
+# Single source of truth for the oh-my-zsh plugin list.
+#
+# Consumed by:
+#   - private_dot_config/zsh/dot_zshrc.tmpl  -> the `plugins=()` array
+#   - .chezmoiexternal.toml                  -> the `include` patterns limiting
+#     which of the 360 plugins shipped by the oh-my-zsh archive are downloaded
+#
+# Order matters: oh-my-zsh sources plugins in array order, and plugins that wrap
+# widgets (syntax highlighting) must come after the ones that define them.
+#
+# Fields:
+#   name      plugin name, as oh-my-zsh expects it
+#   builtin   true if it comes from the oh-my-zsh archive, false if provided by
+#             an external or a source file under custom/plugins/
+#   os        restrict to a single chezmoi OS (omit to load everywhere)
+#   disabled  keep the entry and its comments as documentation, but comment the
+#             plugin out of the array and do not download it
+#   comments  lines emitted above the entry in the generated array
+
+[[zsh.plugins]]
+  name = "aws"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "bw"
+  builtin = false
+
+[[zsh.plugins]]
+  name = "brew"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "clipboard"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/zpm-zsh/clipboard"]
+
+[[zsh.plugins]]
+  name = "colorize"
+  builtin = true
+  comments = ["Needs chroma installed"]
+
+[[zsh.plugins]]
+  name = "command-not-found"
+  builtin = true
+  comments = ["Should works with brew on Linux if installed"]
+
+[[zsh.plugins]]
+  name = "deja"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/Giammarco-Ferranti/deja"]
+
+[[zsh.plugins]]
+  name = "docker"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "docker-compose"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "emoji"
+  builtin = true
+  disabled = true
+  comments = [
+    "Checkout this plugin when it has colon support: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/emoji",
+    "Checkout also this: https://github.com/b4b4r07/emoji-cli",
+  ]
+
+[[zsh.plugins]]
+  name = "fast-syntax-highlighting"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/zdharma-continuum/fast-syntax-highlighting"]
+
+[[zsh.plugins]]
+  name = "git"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/davidde/git"]
+
+[[zsh.plugins]]
+  name = "gpg-agent"
+  builtin = true
+  disabled = true
+  comments = [
+    "Replaced by GPG_TTY in the Custom section: the plugin spends ~400 ms per",
+    "shell probing enable-ssh-support, which is off here.",
+  ]
+
+[[zsh.plugins]]
+  name = "httpie"
+  builtin = true
+  disabled = true
+  comments = ["Might be of interest"]
+
+[[zsh.plugins]]
+  name = "jq"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/reegnz/jq-zsh-plugin"]
+
+[[zsh.plugins]]
+  name = "macos"
+  builtin = true
+  os = "darwin"
+
+[[zsh.plugins]]
+  name = "mise"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "node"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "npm"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "op"
+  builtin = false
+  comments = ["My own plugin"]
+
+[[zsh.plugins]]
+  name = "pnpm"
+  builtin = false
+
+[[zsh.plugins]]
+  name = "postgres"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "rsync"
+  builtin = true
+  disabled = true
+  comments = ["Might be of interest"]
+
+[[zsh.plugins]]
+  name = "rbw"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "run-help"
+  builtin = false
+
+[[zsh.plugins]]
+  name = "solarized-man"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/zlsun/solarized-man"]
+
+[[zsh.plugins]]
+  name = "ssh-agent"
+  builtin = false
+  comments = ["Not in oh-my-zsh: customized to use xdg compliant paths"]
+
+[[zsh.plugins]]
+  name = "sudo"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "terraform"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "vscode"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "yarn"
+  builtin = true
+
+[[zsh.plugins]]
+  name = "you-should-use"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/MichaelAquilina/zsh-you-should-use"]
+
+[[zsh.plugins]]
+  name = "zsh-autocomplete"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/marlonrichert/zsh-autocomplete"]
+
+[[zsh.plugins]]
+  name = "zsh-autopair"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/hlissner/zsh-autopair"]
+
+[[zsh.plugins]]
+  name = "zsh-bitwarden"
+  builtin = false
+  comments = [
+    "Not in oh-my-zsh: https://github.com/Game4Move78/zsh-bitwarden",
+    "Depends on bw CLI, jq CLI, and fzf",
+  ]
+
+[[zsh.plugins]]
+  name = "zsh-mask"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/jgogstad/zsh-mask"]
+
+[[zsh.plugins]]
+  name = "zsh-completions"
+  builtin = false
+  disabled = true
+  comments = [
+    "Not in oh-my-zsh: https://github.com/zsh-users/zsh-completions",
+    "WARNING: Do not enable this plugin, it must not appear in the array.",
+    "Its completions are added to the fpath instead.",
+    "See: https://github.com/zsh-users/zsh-completions/issues/603",
+  ]
+
+[[zsh.plugins]]
+  name = "zsh-z"
+  builtin = false
+  comments = ["Not in oh-my-zsh: https://github.com/agkozak/zsh-z"]

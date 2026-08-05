@@ -18,70 +18,23 @@ path=("${XDG_CONFIG_HOME}/bin" $path)
 
 export ZSH="${XDG_CONFIG_HOME}/oh-my-zsh"
 
+# Generated from .chezmoidata/zsh.yaml, which is also what limits the plugins
+# downloaded by the oh-my-zsh external. Edit the list there, not here.
 plugins=(
-  aws
-  bw
-  brew
-  # Not in oh-my-zsh: https://github.com/zpm-zsh/clipboard
-  clipboard
-  # Needs chroma installed
-  colorize
-  # Should works with brew on Linux if installed
-  command-not-found
-  # Not in oh-my-zsh: https://github.com/Giammarco-Ferranti/deja
-  deja
-  docker
-  docker-compose
-  # Checkout this plugin when it has colon support: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/emoji
-  # Checkout also this: https://github.com/b4b4r07/emoji-cli
-  # emoji
-  # Not in oh-my-zsh: https://github.com/zdharma-continuum/fast-syntax-highlighting
-  fast-syntax-highlighting
-  git
-  # Deliberately not the `gpg-agent` plugin: see GPG_TTY in the Custom section
-  # Might be of interest
-  # httpie
-  # Not in oh-my-zsh: https://github.com/reegnz/jq-zsh-plugin
-  jq
-{{- if (eq .chezmoi.os "darwin") }}
-  macos
+{{- range .zsh.plugins }}
+{{- /* `get` is required over `.os`: chezmoi errors out on a missing map key. */}}
+{{-   $os := get . "os" }}
+{{-   if or (not $os) (eq $os $.chezmoi.os) }}
+{{-     range (dig "comments" (list) .) }}
+  # {{ . }}
+{{-     end }}
+{{-     if get . "disabled" }}
+  # {{ .name }}
+{{-     else }}
+  {{ .name }}
+{{-     end }}
+{{-   end }}
 {{- end }}
-  mise
-  node
-  npm
-  # My own plugin
-  op
-  pnpm
-  postgres
-  # Might be of interest
-  # rsync
-  rbw
-  run-help
-  # Not in oh-my-zsh: https://github.com/zlsun/solarized-man
-  solarized-man
-  # Not in oh-my-zsh: customized to use xdg compliant paths
-  ssh-agent
-  sudo
-  terraform
-  vscode
-  yarn
-  # Not in oh-my-zsh: https://github.com/MichaelAquilina/zsh-you-should-use
-  you-should-use
-  # Not in oh-my-zsh: https://github.com/marlonrichert/zsh-autocomplete
-  zsh-autocomplete
-  # Not in oh-my-zsh: https://github.com/hlissner/zsh-autopair
-  zsh-autopair
-  # Not in oh-my-zsh: https://github.com/Game4Move78/zsh-bitwarden
-  # Depends on bw CLI, jq CLI, and fzf
-  zsh-bitwarden
-  # Not in oh-my-zsh: https://github.com/jgogstad/zsh-mask
-  zsh-mask
-  # Not in oh-my-zsh: https://github.com/zsh-users/zsh-completions
-  # WARNING: Do not uncomment this plugin, it should not appear in the plugins list
-  # See: https://github.com/zsh-users/zsh-completions/issues/603
-  # zsh-completions
-  # Not in oh-my-zsh: https://github.com/agkozak/zsh-z
-  zsh-z
 )
 
 ZSH_CUSTOM="$ZSH/custom"

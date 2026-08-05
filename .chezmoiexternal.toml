@@ -1,6 +1,6 @@
 # ----- Zsh plugins ----- #
 
-{{ $omzPlugins := list "aws" "brew" "colorize" "command-not-found" "docker" "docker-compose" "macos" "mise" "node" "npm" "postgres" "rbw" "sudo" "terraform" "vscode" "yarn" }}
+
 [".config/oh-my-zsh"]
   type = "archive"
   url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
@@ -16,8 +16,13 @@
     "*/tools/**",
     # Intermediate directory must be listed too, otherwise chezmoi fails with `mkdir ...: no such file or directory`.
     "*/plugins",
-{{- range $omzPlugins }}
-    "*/plugins/{{ . }}", "*/plugins/{{ . }}/**",
+{{- /* The built-in, enabled plugins from .chezmoidata/zsh.yaml, which is also
+       what generates the `plugins=()` array in dot_zshrc.tmpl. */}}
+{{- range .zsh.plugins }}
+{{-   $os := get . "os" }}
+{{-   if and .builtin (not (get . "disabled")) (or (not $os) (eq $os $.chezmoi.os)) }}
+    "*/plugins/{{ .name }}", "*/plugins/{{ .name }}/**",
+{{-   end }}
 {{- end }}
   ]
 [".config/oh-my-zsh/custom/plugins/clipboard"]

@@ -1,13 +1,25 @@
 # ----- Zsh plugins ----- #
 
+{{ $omzPlugins := list "aws" "brew" "colorize" "command-not-found" "docker" "docker-compose" "macos" "mise" "node" "npm" "postgres" "rbw" "sudo" "terraform" "vscode" "yarn" }}
 [".config/oh-my-zsh"]
   type = "archive"
   url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-  # waiting for https://github.com/twpayne/chezmoi/issues/1574
+  # Nested *externals* do survive it, but source files do not.
+  # See https://github.com/twpayne/chezmoi/issues/1574
   # exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-  exclude = ["*/.github/**", "**/*.md"]
+  include = [
+    "*/oh-my-zsh.sh",
+    "*/lib/**",
+    # tools/check_for_upgrade.sh is sourced unconditionally by oh-my-zsh.sh.
+    "*/tools/**",
+    # Intermediate directory must be listed too, otherwise chezmoi fails with `mkdir ...: no such file or directory`.
+    "*/plugins",
+{{- range $omzPlugins }}
+    "*/plugins/{{ . }}", "*/plugins/{{ . }}/**",
+{{- end }}
+  ]
 [".config/oh-my-zsh/custom/plugins/clipboard"]
   type = "archive"
   url = "https://github.com/zpm-zsh/clipboard/archive/master.tar.gz"
@@ -17,7 +29,7 @@
   exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
   type = "archive"
-  url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
+  url = {{ printf "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/refs/tags/%s.tar.gz" (toString (gitHubLatestTag "zdharma-continuum/fast-syntax-highlighting").Name) | quote }}
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
@@ -31,18 +43,18 @@
   exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/jq"]
   type = "archive"
-  url = "https://github.com/reegnz/jq-zsh-plugin/archive/master.tar.gz"
+  url = {{ toString (gitHubLatestRelease "reegnz/jq-zsh-plugin").TarballURL | quote }}
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
   exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-mask/zsh-mask.plugin.zsh"]
   type = "file"
-  url = "https://raw.githubusercontent.com/jgogstad/zsh-mask/master/zsh-mask.plugin.zsh"
+  url = {{ printf "https://raw.githubusercontent.com/jgogstad/zsh-mask/%s/zsh-mask.plugin.zsh" (toString (gitHubLatestRelease "jgogstad/zsh-mask").TagName) | quote }}
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/pnpm/completions"]
   type = "file"
-  url = "https://raw.githubusercontent.com/empresslabs/pnpm.plugin.zsh/main/completions/_pnpm"
+  url = {{ printf "https://raw.githubusercontent.com/empresslabs/pnpm.plugin.zsh/%s/completions/_pnpm" (toString (gitHubLatestRelease "empresslabs/pnpm.plugin.zsh").TagName) | quote }}
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/solarized-man/solarized-man.plugin.zsh"]
   type = "file"
@@ -50,7 +62,7 @@
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/you-should-use/you-should-use.plugin.zsh"]
   type = "file"
-  url = "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/master/you-should-use.plugin.zsh"
+  url = {{ printf "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/%s/you-should-use.plugin.zsh" (toString (gitHubLatestTag "MichaelAquilina/zsh-you-should-use").Name) | quote }}
   refreshPeriod = "168h"
 [".config/oh-my-zsh/custom/plugins/zsh-autocomplete"]
   type = "archive"
@@ -61,7 +73,7 @@
   exclude = ["*/.*", "**/LICENSE", "**/*Test*", "**/*test*", "**/*.md", "*/z-async/.*"]
 [".config/oh-my-zsh/custom/plugins/zsh-autopair"]
   type = "archive"
-  url = "https://github.com/hlissner/zsh-autopair/archive/master.tar.gz"
+  url = {{ printf "https://github.com/hlissner/zsh-autopair/archive/refs/tags/%s.tar.gz" (toString (gitHubLatestTag "hlissner/zsh-autopair").Name) | quote }}
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
@@ -85,7 +97,7 @@
   exclude = ["*/.github/**", "**/*.md"]
 [".config/oh-my-zsh/custom/plugins/zsh-completions"]
   type = "archive"
-  url = "https://github.com/zsh-users/zsh-completions/archive/master.tar.gz"
+  url = {{ toString (gitHubLatestRelease "zsh-users/zsh-completions").TarballURL | quote }}
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
@@ -128,7 +140,7 @@
 
 [".config/vim/pack/plugins/start/vim-airline"]
   type = "archive"
-  url = "https://github.com/vim-airline/vim-airline/archive/master.tar.gz"
+  url = {{ toString (gitHubLatestRelease "vim-airline/vim-airline").TarballURL | quote }}
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
@@ -151,17 +163,14 @@
 [".config/iterm2/integration"]
   type = "archive"
   url = "https://github.com/gnachman/iTerm2-shell-integration/archive/master.tar.gz"
-  include = ["*/shell_integration/zsh", "*/utilities/*"]
-  exact = false
+  exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-  exclude = ["*/utilities/it2ssh", "*/.github/**", "**/*.md"]
-# For unknown reason, the it2ssh file is the only one that is non executable
-[".config/iterm2/integration/utilities/it2ssh"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/main/utilities/it2ssh"
-  executable = true
-  refreshPeriod = "168h"
+  # Avoid files designed for other shells.
+  include = [
+    "*/shell_integration", "*/shell_integration/zsh",
+    "*/utilities", "*/utilities/**",
+  ]
 {{- end }}
 
 # ----- iTerm2 specific ----- #
@@ -173,7 +182,7 @@
 {{ if (.wsl) -}}
 ["{{ .xdg_bin_home }}/wsl-open.sh"]
  type = "file"
- url = "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+ url = {{ printf "https://raw.githubusercontent.com/4U6U57/wsl-open/%s/wsl-open.sh" (toString (gitHubLatestTag "4U6U57/wsl-open").Name) | quote }}
  refreshPeriod = "168h"
 {{- end }}
 

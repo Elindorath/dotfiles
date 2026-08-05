@@ -18,6 +18,8 @@ export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
 export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew";
 export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
 
+export CHEZMOI_GITHUB_ACCESS_TOKEN="${HOMEBREW_GITHUB_API_TOKEN}"
+
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 
 # Tied path to the PATH variable, ensure path entries are deduplicated and export `PATH`

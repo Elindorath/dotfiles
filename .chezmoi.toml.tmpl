@@ -50,6 +50,10 @@ args = ["-convert", "xml1", "-o", "-", "-"]
 [diff]
   pager = "delta \"$(if [ $(tput cols) -gt 160 ]; then echo '-s'; else echo '--pager=less'; fi)\""
 
+[gitHub]
+  # Avoid depleting the GitHub API rate limit.
+  refreshPeriod = "168h"
+
 [onepassword]
   mode = "service"
 {{ if ($wsl) -}}

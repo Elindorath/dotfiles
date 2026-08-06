@@ -21,4 +21,12 @@ if [[ ! -f "$ZSH_CACHE_DIR/completions/_op" ]]; then
   _comps[op]=_op
 fi
 
-{{ $executable }} completion zsh >| "$ZSH_CACHE_DIR/completions/_op" &|
+# `$commands[op]` is empty when the executable is the WSL one, hence the fallback.
+op_bin="${commands[op]:-{{ $executable }}}"
+
+# Only regenerate when missing or older than the binary: `op completion` takes ~90 ms.
+if [[ ! -f "$ZSH_CACHE_DIR/completions/_op" || "$op_bin" -nt "$ZSH_CACHE_DIR/completions/_op" ]]; then
+  "$op_bin" completion zsh >| "$ZSH_CACHE_DIR/completions/_op" &|
+fi
+
+unset op_bin

@@ -13,4 +13,7 @@ if [[ ! -f "$ZSH_CACHE_DIR/completions/_bw" ]]; then
   _comps[bw]=_bw
 fi
 
-bw completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_bw" &|
+# Only regenerate when missing or older than the binary: `bw completion` takes ~700 ms.
+if [[ ! -f "$ZSH_CACHE_DIR/completions/_bw" || "$commands[bw]" -nt "$ZSH_CACHE_DIR/completions/_bw" ]]; then
+  bw completion --shell zsh >| "$ZSH_CACHE_DIR/completions/_bw" &|
+fi

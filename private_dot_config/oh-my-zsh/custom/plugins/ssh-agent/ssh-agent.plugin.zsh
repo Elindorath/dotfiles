@@ -1,6 +1,8 @@
 # Get the filename to store/lookup the environment from
 ssh_env_cache="${XDG_CONFIG_HOME}/ssh/environment-$SHORT_HOST"
 
+ssh_agent_sock="${XDG_STATE_HOME}/ssh/agent.sock"
+
 function _start_agent() {
   # Check if ssh-agent is already running
   if [[ -f "$ssh_env_cache" ]]; then
@@ -8,7 +10,8 @@ function _start_agent() {
 
     # Test if $SSH_AUTH_SOCK is visible
     zmodload zsh/net/socket
-    if [[ -S "$SSH_AUTH_SOCK" ]] && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
+    if [[ "$SSH_AUTH_SOCK" == "$ssh_agent_sock" ]] \
+      && [[ -S "$SSH_AUTH_SOCK" ]] && zsocket "$SSH_AUTH_SOCK" 2>/dev/null; then
       return 0
     fi
   fi
@@ -19,7 +22,11 @@ function _start_agent() {
 
   # start ssh-agent and setup environment
   zstyle -t :omz:plugins:ssh-agent quiet || echo >&2 "Starting ssh-agent ..."
-  ssh-agent -s ${lifetime:+-t} ${lifetime} | sed '/^echo/d' >! "$ssh_env_cache"
+  # `ssh-agent -a` refuses to bind when the path already exists. Getting here
+  # means the checks above found no live agent on it, so any leftover is stale.
+  mkdir -p "${ssh_agent_sock:h}"
+  rm -f "$ssh_agent_sock"
+  ssh-agent -s -a "$ssh_agent_sock" ${lifetime:+-t} ${lifetime} | sed '/^echo/d' >! "$ssh_env_cache"
   chmod 600 "$ssh_env_cache"
   . "$ssh_env_cache" > /dev/null
 }

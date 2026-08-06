@@ -1,24 +1,26 @@
+# `%d` is expanded to the local user's home directory without needing user's environment variables.
+# Required for any tool using ssh outside a zsh login shell.
 Host *
   AddKeysToAgent yes
 {{- if (eq .chezmoi.os "darwin") }}
   UseKeychain yes
 {{- end }}
   HashKnownHosts yes
-  UserKnownHostsFile ${XDG_CONFIG_HOME}/ssh/known_hosts
+  UserKnownHostsFile %d/.config/ssh/known_hosts
   IdentitiesOnly yes
 
 Host github.com
   AddKeysToAgent yes
-  IdentityFile ${XDG_CONFIG_HOME}/ssh/github_ed25519
+  IdentityFile %d/.config/ssh/github_ed25519
 
 Host gitlab.com
   AddKeysToAgent yes
-  IdentityFile ${XDG_CONFIG_HOME}/ssh/gitlab_rsa
+  IdentityFile %d/.config/ssh/gitlab_rsa
 
 Host ec2-15-237-227-166.eu-west-3.compute.amazonaws.com
   AddKeysToAgent yes
-  IdentityFile ${XDG_CONFIG_HOME}/ssh/bastion_ed25519
+  IdentityFile %d/.config/ssh/bastion_ed25519
 
 Host ec2-13-37-98-78.eu-west-3.compute.amazonaws.com
   AddKeysToAgent yes
-  IdentityFile ${XDG_CONFIG_HOME}/ssh/bastion_ed25519
+  IdentityFile %d/.config/ssh/bastion_ed25519

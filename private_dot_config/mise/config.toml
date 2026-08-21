@@ -1,7 +1,7 @@
 [tools]
 ansible = "14.3.1"
 ansible-core = "2.21.3"
-aws-cli = "2.36.26"
+aws-cli = "2.36.29"
 node = "24.19.0"
 python = "3.14.7"
 terraform = "1.7.4"

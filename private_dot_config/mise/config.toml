@@ -1,6 +1,6 @@
 [tools]
 ansible = "14.3.1"
-ansible-core = "2.21.3"
+ansible-core = "2.21.4"
 aws-cli = "2.36.26"
 node = "24.19.0"
 python = "3.14.7"
